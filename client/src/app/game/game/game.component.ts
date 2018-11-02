@@ -66,6 +66,8 @@ export class GameComponent implements AfterViewInit {
       width = height * this.ASPECT;
     }
 
-    this.game.resize(width, height);
+    if (this.game && this.game.renderer) {
+      this.game.renderer.resize(width, height);
+    }
   }
 }

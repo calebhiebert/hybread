@@ -7,7 +7,19 @@ export class PreloadScene extends Phaser.Scene {
     });
   }
 
-  preload(): void {}
+  preload(): void {
+    this.load.on('progress', (val) => {
+      console.log('PROG', val);
+    });
+
+    this.load.on('fileprogress', (val) => {
+      console.log('F PROG', val);
+    });
+
+    this.load.on('complete', () => {
+      console.log('COMPLETE');
+    });
+  }
 
   create(): void {}
 }
