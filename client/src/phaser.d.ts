@@ -32940,7 +32940,7 @@ declare namespace Phaser {
              * Expects values like `'left'`, `'right'`, `'center'` or `'justified'`.
              * @param align The text alignment.
              */
-            setAlign(align: string): Phaser.GameObjects.Text;
+            setAlign(align: 'left' | 'right' | 'center' | 'justified'): Phaser.GameObjects.Text;
 
             /**
              * Set the resolution used by this Text object.

@@ -25,7 +25,6 @@ export class GameComponent implements AfterViewInit {
     const config: GameConfig = {
       width: window.innerWidth,
       height: window.innerWidth / this.ASPECT,
-      // parent: this.gameContainer,
       canvas: this.gameCanvas.nativeElement,
       type: Phaser.AUTO,
       scene: PreloadScene,
@@ -38,7 +37,9 @@ export class GameComponent implements AfterViewInit {
       this.resizeEventHandler();
     });
 
-    this.resizeGameWindow();
+    setTimeout(() => {
+      this.resizeGameWindow();
+    }, 100);
   }
 
   private resizeEventHandler() {
@@ -67,7 +68,8 @@ export class GameComponent implements AfterViewInit {
     }
 
     if (this.game && this.game.renderer) {
-      this.game.renderer.resize(width, height);
+      this.gameCanvas.nativeElement.style.width = `${width}px`;
+      this.gameCanvas.nativeElement.style.height = `${height}px`;
     }
   }
 }
