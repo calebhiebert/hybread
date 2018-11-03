@@ -67,4 +67,7 @@ workflows:
           filters:
             branches:
               only: master
-      # - build-server
+      - build-server:
+          filters:
+            branches:
+              only: master
