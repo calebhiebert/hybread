@@ -32,3 +32,19 @@
 [[constraint]]
   name = "github.com/gin-gonic/gin"
   version = "1.3.0"
+
+[[constraint]]
+  name = "upper.io/db.v3"
+  version = "3.5.5"
+
+[[constraint]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+
+[[constraint]]
+  name = "github.com/go-redis/cache"
+  version = "6.3.5"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/jkomyno/nanoid"
