@@ -20,7 +20,7 @@ services:
 
   # Redis
   redis:
-    image: 'bitnami/redis:5.0'
+    image: 'redis:5-alpine'
     environment:
       ALLOW_EMPTY_PASSWORD: 'yes'
     ports:

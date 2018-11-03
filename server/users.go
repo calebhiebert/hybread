@@ -87,6 +87,10 @@ func CreateUser(c *gin.Context) {
 	c.JSON(200, &user)
 }
 
+func GetUsers(c *gin.Context) {
+
+}
+
 // Login the handler for obtaining a Bearer token to access the rest of the API
 func Login(c *gin.Context) {
 	var login LoginArgs
@@ -131,7 +135,7 @@ func Login(c *gin.Context) {
 	}
 
 	// Save the token in Redis for 24 hours. The redis value is just the user's id
-	err = rds.Set(token, user.ID, 24*time.Hour).Err()
+	err = rds.Set("auth:"+token, user.ID, 24*time.Hour).Err()
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Error while caching token", "ctx": err})
 		return
@@ -140,4 +144,29 @@ func Login(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"token": token,
 	})
+}
+
+// UsernameAvailable the handler for checking if a given username is taken or not
+func UsernameAvailable(c *gin.Context) {
+
+	// Grab the username from the query paramter "username"
+	username := c.Query("username")
+
+	var user User
+
+	// Lookup a user by username
+	err := sess.Collection("users").Find(db.Cond{"username": username}).One(&user)
+	if err != nil {
+		// If the user was not found, that means this username is available
+		if err == db.ErrNoMoreRows {
+			c.JSON(200, gin.H{"username": username, "available": true})
+			return
+		} else {
+			c.JSON(500, gin.H{"error": "Error performing database lookup", "ctx": err})
+			return
+		}
+	}
+
+	// If the user was found, that means this username is not available
+	c.JSON(200, gin.H{"username": username, "available": false})
 }

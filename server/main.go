@@ -7,6 +7,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"os"
 
@@ -30,6 +31,7 @@ func main() {
 	// Establish a connection to the redis server
 	err = ConnectRedis()
 	if err != nil {
+		fmt.Println("Could not connect to Redis")
 		log.Fatal(err)
 	}
 
@@ -49,12 +51,25 @@ func main() {
 	// Create the api route group, this is similar to an express sub-router
 	api := r.Group("/api")
 
+	// Perform user lookup for all requests, note: this middleware will not require authentication
+	api.Use(AuthMiddleware())
+
 	// Create the api version group, this is similar to an express sub-router
 	v1 := api.Group("/v1")
+
+	// Create a separate v1 group with no path prefix, any routes on this group will require authentication
+	v1Auth := v1.Group("")
+
+	// Require authentication on routes in the v1auth group
+	v1Auth.Use(RequireAuthMiddleware())
 
 	// User related routes, full path ends up being <server>/api/v1/users
 	v1.POST("/users", CreateUser)
 	v1.POST("/login", Login)
+	v1.GET("/username-available", UsernameAvailable)
+
+	// Authenticated routes
+	v1Auth.GET("/users", GetUsers)
 
 	// Start the server (default port is 8080)
 	r.Run()
@@ -144,7 +159,8 @@ func ConnectDatabase() error {
 	// Completely clears the database
 	err = dropDatabase()
 	if err != nil {
-		return err
+		// There may have been an error with dropping non-existent tables, this can be safely ignored
+		// return err
 	}
 
 	// Creates all database tables
