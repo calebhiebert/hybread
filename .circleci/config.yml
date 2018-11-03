@@ -47,9 +47,10 @@ jobs:
             git rm -rf .
             cd ..
 
-            cp -a dist/. out/.
+            cp -a dist/client/. out/.
 
             cd out
+            cp index.html 404.html
 
             git add -A
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
