@@ -17,7 +17,7 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}/server
+    working_directory: /go/src/github.com/calebhiebert/hybread/server
     steps:
       - checkout
 
@@ -27,7 +27,7 @@ jobs:
   build-client:
     docker:
       - image: circleci/node:8-stretch-browsers
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}/client
+    working_directory: ~/client
     steps:
       - checkout
       - restore_cache:
