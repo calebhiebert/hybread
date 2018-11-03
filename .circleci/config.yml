@@ -42,3 +42,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-server
+      - build-client
