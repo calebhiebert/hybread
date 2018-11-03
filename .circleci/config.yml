@@ -35,7 +35,9 @@ jobs:
             - node_modules
       - run:
           name: Deploy
-          command: yarn deploy --repo=https://$GH_TOKEN@github.com/calebhiebert/hybread.git
+          environment:
+            GH_TOKEN: $GH_TOKEN
+          command: yarn deploy --message="automated commit" --name="$CIRCLE_USERNAME" --email="ci@hybread.io" --repo=https://GH_TOKEN@github.com/calebhiebert/hybread.git
 workflows:
   version: 2
   build:
@@ -43,5 +45,5 @@ workflows:
       - build-client:
           filters:
             branches:
-              only: master
+              only: ci
       # - build-server
