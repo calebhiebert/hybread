@@ -52,6 +52,7 @@ jobs:
 
             cd out
             cp index.html 404.html
+            echo hybread.io > CNAME
 
             git add -A
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
