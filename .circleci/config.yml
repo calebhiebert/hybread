@@ -19,8 +19,9 @@ jobs:
       - image: circleci/node:8-stretch-browsers
     working_directory: ~/hybread/client
     steps:
-      - checkout:
-          path: ~/hybread
+      - run:
+          name: Checkout Code
+          command: git clone https://github.com/calebhiebert/hybread ~/hybread
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -37,7 +38,7 @@ jobs:
           name: Deploy
           environment:
             GH_TOKEN: $GH_TOKEN
-          command: git config --global user.email="$GH_EMAIL" && git config --global user.name="$GH_NAME" && yarn deploy --message="automated commit" --name="$CIRCLE_USERNAME" --email="ci@hybread.io" --repo=https://GH_TOKEN@github.com/calebhiebert/hybread.git
+          command: yarn deploy --message="automated commit" --name="$CIRCLE_USERNAME" --email="ci@hybread.io" --repo=https://GH_TOKEN@github.com/calebhiebert/hybread.git
 workflows:
   version: 2
   build:
