@@ -48,6 +48,7 @@ jobs:
             cd ..
 
             cp -a dist/client/. out/.
+            mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
 
             cd out
             cp index.html 404.html

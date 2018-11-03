@@ -7,8 +7,7 @@
     "build": "ng build --prod --base-href https://hybread.io --no-progress",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy": "npx ngh --dir=dist/client --cname=hybread.io"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
