@@ -16,8 +16,13 @@ import (
 	"upper.io/db.v3/postgresql"
 )
 
+// Database session, used for all database operations
 var sess sqlbuilder.Database
+
+// Redis client
 var rds *redis.Client
+
+// This does not strictly have to be here, but it makes for cleaner code
 var err error
 
 func main() {
