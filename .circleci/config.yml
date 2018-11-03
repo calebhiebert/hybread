@@ -1,0 +1,47 @@
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-go/ for more details
+version: 2
+jobs:
+  build-server:
+    docker:
+      # specify the version
+      - image: circleci/golang:1.10-stretch
+    working_directory: /go/src/github.com/calebhiebert/hybread/server
+    steps:
+      - checkout
+
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go build
+  build-client:
+    docker:
+      - image: circleci/node:8-stretch-browsers
+    working_directory: ~/hybread/client
+    steps:
+      - checkout:
+          path: ~/hybread
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install Packages
+          command: yarn
+      - run:
+          name: Build
+          command: yarn build
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Deploy
+          command: yarn deploy
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-client:
+          filters:
+            branches:
+              only: master
+      # - build-server
