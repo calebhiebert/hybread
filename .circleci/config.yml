@@ -30,6 +30,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+            - yarn.lock
       - run:
           name: Build
           command: yarn build
@@ -65,5 +66,5 @@ workflows:
       - build-client:
           filters:
             branches:
-              only: ci
+              only: master
       # - build-server
