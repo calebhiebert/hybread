@@ -7,7 +7,8 @@ package main
 
 import (
 	"fmt"
-	"hybread/server/sql"
+
+	"github.com/calebhiebert/hybread/server/sql"
 )
 
 // Create all database tables and print the result
