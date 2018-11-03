@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "npx ngh --dir=dist/client --cname=hybread.io"
+    "deploy": "npx ngh --dir=dist/client --cname=hybread.io --repo=https://GH_TOKEN@github.com/calebhiebert/hybread.git"
   },
   "private": true,
   "dependencies": {
