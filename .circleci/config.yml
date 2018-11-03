@@ -12,7 +12,11 @@ jobs:
       - DEP_VERSION: 0.5.0
     working_directory: /go/src/github.com/calebhiebert/hybread/server
     steps:
-      - checkout
+      - checkout:
+          path: /go/src/github.com/calebhiebert/hybread
+      - run:
+          name: list
+          command: ls -lah
 
       - restore_cache:
           key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
