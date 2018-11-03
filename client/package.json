@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "build": "ng build --prod --base-href https://hybread.io",
+    "build": "ng build --prod --base-href https://hybread.io --no-progress",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

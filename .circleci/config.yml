@@ -26,13 +26,13 @@ jobs:
       - run:
           name: Install Packages
           command: yarn
-      - run:
-          name: Build
-          command: yarn build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+      - run:
+          name: Build
+          command: yarn build
       - deploy:
           name: Deploy
           command: |
@@ -46,8 +46,6 @@ jobs:
             git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
             git rm -rf .
             cd ..
-
-            yarn build
 
             cp -a dist/. out/.
 
