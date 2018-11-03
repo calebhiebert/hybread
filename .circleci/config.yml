@@ -1,0 +1,68 @@
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-go/ for more details
+version: 2
+jobs:
+  build-server:
+    docker:
+      # specify the version
+      - image: circleci/golang:1.10-stretch
+    working_directory: /go/src/github.com/calebhiebert/hybread/server
+    steps:
+      - checkout
+
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go build
+  build-client:
+    docker:
+      - image: circleci/node:8-stretch-browsers
+    working_directory: ~/hybread/client
+    steps:
+      - checkout:
+          path: ~/hybread
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install Packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build
+          command: yarn build
+      - deploy:
+          name: Deploy
+          command: |
+            export TARGET_BRANCH=gh-pages
+            git config --global user.email $GH_EMAIL
+            git config --global user.name $GH_NAME
+
+            git clone $CIRCLE_REPOSITORY_URL out
+
+            cd out
+            git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+            cd ..
+
+            cp -a dist/client/. out/.
+            mkdir -p out/.circleci && cp -a ../.circleci/. out/.circleci/.
+
+            cd out
+            cp index.html 404.html
+
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+            git push https://$GH_TOKEN@github.com/calebhiebert/hybread.git $TARGET_BRANCH -q
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-client:
+          filters:
+            branches:
+              only: ci
+      # - build-server
