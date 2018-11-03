@@ -14,10 +14,6 @@ jobs:
     steps:
       - checkout:
           path: /go/src/github.com/calebhiebert/hybread
-      - run:
-          name: list
-          command: ls -lah
-
       - restore_cache:
           key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
           paths:
@@ -40,7 +36,18 @@ jobs:
           name: test
           command: |
             mkdir -p $GOCACHE
-            go build -v
+            export GOOS=linux
+            export GOARCH=amd64
+            go build -v -o hybread
+
+            export GOOS=windows
+            export GOARCH=amd64
+            go build -v -o hybread.exe
+
+      - store_artifacts:
+          path: ./hybread
+      - store_artifacts:
+          path: ./hybread.exe
   build-client:
     docker:
       - image: circleci/node:8-stretch-browsers
