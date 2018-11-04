@@ -7,7 +7,6 @@ jobs:
     machine: true
     working_directory: /go/src/github.com/calebhiebert/hybread/server
     steps:
-      - setup_remote_docker
       - checkout:
           path: /go/src/github.com/calebhiebert/hybread
       - run:
