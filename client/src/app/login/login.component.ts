@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
-  public async submit(e) {
+  public async submit() {
     const api = new HybreadAPI();
 
     if (!this.username.invalid && !this.password.invalid) {
