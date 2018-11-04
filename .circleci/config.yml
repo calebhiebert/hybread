@@ -11,10 +11,11 @@ jobs:
           path: ~/hybread
       - run:
           name: Docker Build
-          command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM panchem/hybread:latest .
+          command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM .
       - run:
           name: Docker Push
           command: |
+            docker tag panchem/hybread:$CIRCLE_BUILD_NUM panchem/hybread:latest
             docker login -u $DOCKER_UNAME -p $DOCKER_PWORD
             docker push panchem/hybread:$CIRCLE_BUILD_NUM
   build-client:
