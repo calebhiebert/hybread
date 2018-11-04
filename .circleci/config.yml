@@ -54,6 +54,7 @@ jobs:
             cd ..
 
             cp -a dist/client/. out/.
+            sed -i 's/HYBREAD_TITLE_INFO/Hybread - $CIRCLE_BUILD_NUM - $CIRCLE_SHA1/g'
             mkdir -p out/.circleci && cp -a ../.circleci/. out/.circleci/.
 
             cd out
