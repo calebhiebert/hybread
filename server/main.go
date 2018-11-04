@@ -11,6 +11,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"upper.io/db.v3/lib/sqlbuilder"
@@ -47,6 +48,13 @@ func main() {
 	// Start up the gin server
 	r := gin.Default()
 
+	// Apply CORS middleware
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"https://hybread.io", "http://localhost:4200"},
+		AllowMethods: []string{"GET", "POST", "PATCH", "DELETE"},
+		AllowHeaders: []string{"Content-Type"},
+	}))
+
 	r.GET("/healthz", HealthCheck)
 
 	// Create the api route group, this is similar to an express sub-router
@@ -68,6 +76,7 @@ func main() {
 	v1.POST("/users", CreateUser)
 	v1.POST("/login", Login)
 	v1.GET("/username-available", UsernameAvailable)
+	v1.GET("/check-authentication", CheckAuthentication)
 
 	// Authenticated routes
 	v1Auth.GET("/users", GetUsers)

@@ -1,0 +1,12 @@
+<form (ngSubmit)="submit($event)">
+  <fieldset>
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" placeholder="Username" [formControl]="username">
+  </fieldset>
+  <fieldset>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="****" [formControl]="password">
+  </fieldset>
+  <button>Login</button>
+  <button (click)="register()">Register</button>
+</form>

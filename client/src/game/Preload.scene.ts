@@ -20,7 +20,7 @@ export class PreloadScene extends Phaser.Scene {
       {
         align: 'center',
         fontFamily: 'Spicy Rice',
-      },
+      }
     );
     this.loadingText.setOrigin(0.5, 0.5);
 
@@ -37,14 +37,14 @@ export class PreloadScene extends Phaser.Scene {
     });
 
     this.load.image('bread', '/assets/bread.png');
-
-    for (let i = 0; i < 150; i++) {
-      this.load.image(`bread-${i}`, '/assets/bread.png');
-    }
   }
 
   create(): void {
-    this.breadLogo = this.add.image(this.cameras.main.worldView.centerX, this.cameras.main.worldView.centerY, 'bread');
+    this.breadLogo = this.add.image(
+      this.cameras.main.worldView.centerX,
+      this.cameras.main.worldView.centerY,
+      'bread'
+    );
     this.logoText = this.add.text(
       this.cameras.main.worldView.centerX,
       this.cameras.main.worldView.centerY + 150,
@@ -53,7 +53,7 @@ export class PreloadScene extends Phaser.Scene {
         align: 'center',
         fontFamily: 'Spicy Rice',
         fontSize: '65px',
-      },
+      }
     );
 
     this.breadLogo.setOrigin(0.5, 0.5);

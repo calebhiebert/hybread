@@ -91,6 +91,25 @@ func GetUsers(c *gin.Context) {
 
 }
 
+// CheckAuthentication checks the validity of the caller's authentication
+func CheckAuthentication(c *gin.Context) {
+	user, exists := c.Get("user")
+
+	if !exists {
+		c.JSON(200, gin.H{
+			"authenticated": false,
+		})
+	} else {
+		scrubbedUser := user.(User)
+		scrubbedUser.Password = ""
+
+		c.JSON(200, gin.H{
+			"authenticated": true,
+			"user":          scrubbedUser,
+		})
+	}
+}
+
 // Login the handler for obtaining a Bearer token to access the rest of the API
 func Login(c *gin.Context) {
 	var login LoginArgs

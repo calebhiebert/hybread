@@ -64,6 +64,16 @@ export class HybreadAPI {
   }
 
   /**
+   * Checks this API instances' authentication status
+   */
+  public checkAuthenticationStatus(): Promise<IAuthenticationStatus> {
+    return this._http
+      .get('/check-authentication')
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */
@@ -106,4 +116,9 @@ interface IUser {
 interface IUsernameAvailability {
   username: string;
   available: boolean;
+}
+
+interface IAuthenticationStatus {
+  authenticated: boolean;
+  user?: IUser;
 }

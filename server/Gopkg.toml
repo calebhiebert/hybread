@@ -48,3 +48,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/jkomyno/nanoid"
+
+[[constraint]]
+  name = "github.com/gin-contrib/cors"
+  version = "1.2.0"
