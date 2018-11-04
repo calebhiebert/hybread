@@ -52,7 +52,7 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"https://hybread.io", "http://localhost:4200"},
 		AllowMethods: []string{"GET", "POST", "PATCH", "DELETE"},
-		AllowHeaders: []string{"Content-Type"},
+		AllowHeaders: []string{"Content-Type", "Authorization"},
 	}))
 
 	r.GET("/healthz", HealthCheck)

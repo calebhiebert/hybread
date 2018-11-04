@@ -1,18 +1,26 @@
 import * as Phaser from 'phaser';
+import { HybreadAPI } from 'src/api';
 
 export class PreloadScene extends Phaser.Scene {
   private loadingText: Phaser.GameObjects.Text;
 
   private breadLogo: Phaser.GameObjects.Image;
   private logoText: Phaser.GameObjects.Text;
+  private api: HybreadAPI;
 
   constructor() {
     super({
       key: 'preload',
     });
+
+    this.api = new HybreadAPI(localStorage.getItem('auth-token'));
   }
 
   preload(): void {
+    this.api.checkAuthenticationStatus().then((auth) => {
+      this.add.text(5, 5, `${auth.user.id} - ${auth.user.username}`);
+    });
+
     this.loadingText = this.add.text(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2,
@@ -22,6 +30,7 @@ export class PreloadScene extends Phaser.Scene {
         fontFamily: 'Spicy Rice',
       }
     );
+
     this.loadingText.setOrigin(0.5, 0.5);
 
     this.load.on('progress', (val) => {
@@ -41,13 +50,13 @@ export class PreloadScene extends Phaser.Scene {
 
   create(): void {
     this.breadLogo = this.add.image(
-      this.cameras.main.worldView.centerX,
-      this.cameras.main.worldView.centerY,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 - 30,
       'bread'
     );
     this.logoText = this.add.text(
-      this.cameras.main.worldView.centerX,
-      this.cameras.main.worldView.centerY + 150,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 + 120,
       'Hybread',
       {
         align: 'center',

@@ -100,7 +100,7 @@ func CheckAuthentication(c *gin.Context) {
 			"authenticated": false,
 		})
 	} else {
-		scrubbedUser := user.(User)
+		scrubbedUser := user.(*User)
 		scrubbedUser.Password = ""
 
 		c.JSON(200, gin.H{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HybreadAPI } from 'src/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   password = new FormControl('');
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -23,11 +24,6 @@ export class RegisterComponent implements OnInit {
     const api = new HybreadAPI();
 
     if (!this.username.invalid && !this.password.invalid) {
-      console.log({
-        u: this.username.value,
-        p: this.password.value,
-      });
-
       try {
         const registerResult = await api.registerAccount({
           username: this.username.value,
@@ -35,6 +31,8 @@ export class RegisterComponent implements OnInit {
         });
 
         console.log(registerResult);
+
+        this.router.navigate(['login']);
       } catch (err) {
         // Something went wrong with our registration
       }

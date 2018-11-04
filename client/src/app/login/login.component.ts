@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HybreadAPI } from 'src/api';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   password = new FormControl('');
 
-  constructor(private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -39,7 +40,9 @@ export class LoginComponent implements OnInit {
           password: this.password.value,
         });
 
-        console.log(loginResult);
+        this.auth.saveToken(loginResult.token);
+
+        this.router.navigate(['game']);
       } catch (err) {
         // Something went wrong with our login
       }

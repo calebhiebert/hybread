@@ -9,7 +9,13 @@ export class AuthService {
   private _api: HybreadAPI;
 
   constructor() {
-    this._api = new HybreadAPI();
+    const token = localStorage.getItem('auth-token');
+
+    if (token !== null) {
+      this._api = new HybreadAPI(token);
+    } else {
+      this._api = new HybreadAPI();
+    }
   }
 
   /**
@@ -18,9 +24,26 @@ export class AuthService {
   public async checkAuth(): Promise<boolean> {
     try {
       const authStatus = await this._api.checkAuthenticationStatus();
+
+      console.log('AUTH CHECK', authStatus);
+
       return authStatus.authenticated;
     } catch (err) {
       return false;
     }
+  }
+
+  /**
+   * Saves the token and resets the UI
+   * @param token the authentication token
+   */
+  public saveToken(token: string): void {
+    this._token = token;
+    this._api = new HybreadAPI(token);
+    localStorage.setItem('auth-token', token);
+  }
+
+  public getAPI(): HybreadAPI {
+    return this._api;
   }
 }
