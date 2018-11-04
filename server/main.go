@@ -38,6 +38,7 @@ func main() {
 	// Establish a connection to the database
 	err = ConnectDatabase()
 	if err != nil {
+		fmt.Println("Could not connect to Database")
 		log.Fatal(err)
 	}
 
@@ -71,6 +72,10 @@ func main() {
 	// Authenticated routes
 	v1Auth.GET("/users", GetUsers)
 
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(404, gin.H{"error": "The requested route was not found on this server"})
+	})
+
 	// Start the server (default port is 8080)
 	r.Run()
 }
@@ -78,7 +83,7 @@ func main() {
 // ConnectRedis establishes a connection to the redis server and runs some test commands
 func ConnectRedis() error {
 	config := &redis.Options{
-		MaxRetries: 10,
+		MaxRetries: 3,
 	}
 
 	// Check the environment for the host setting, default to localhost

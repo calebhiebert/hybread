@@ -27,6 +27,8 @@ services:
       - 'traefik.default.protocol=http'
       - 'traefik.frontend.priority=20'
     environment:
+      PORT: 8080
+      GIN_MODE: release
       PG_HOST: db
       PG_USER: hybread
       PG_PASS: $POSTGRES_PASSWORD
