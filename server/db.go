@@ -7,13 +7,11 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/calebhiebert/hybread/server/sql"
 )
 
 // Create all database tables and print the result
 func initializeDatabase() error {
-	schema := sql.GetSchema()
+	schema := GetSchema()
 
 	res, err := sess.Exec(schema)
 	if err != nil {
@@ -27,7 +25,7 @@ func initializeDatabase() error {
 
 // Drop all database tables and print the result
 func dropDatabase() error {
-	schema := sql.GetDropSchema()
+	schema := GetDropSchema()
 
 	res, err := sess.Exec(schema)
 	if err != nil {

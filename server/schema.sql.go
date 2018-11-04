@@ -3,7 +3,7 @@
 
 	This file contains the database schema
 */
-package sql
+package main
 
 func GetDropSchema() string {
 	return `
