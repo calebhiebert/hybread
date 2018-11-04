@@ -4,50 +4,20 @@
 version: 2
 jobs:
   build-server:
-    docker:
-      # specify the version
-      - image: circleci/golang:1.10-stretch
-    environment:
-      - GOCACHE: '/tmp/go/cache'
-      - DEP_VERSION: 0.5.0
+    machine: true
     working_directory: /go/src/github.com/calebhiebert/hybread/server
     steps:
+      - setup_remote_docker
       - checkout:
           path: /go/src/github.com/calebhiebert/hybread
-      - restore_cache:
-          key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
-          paths:
-            - /go/src/github.com/calebhiebert/hybread/vendor
-
       - run:
-          name: download-libraries
-          command: |
-            if [ ! -d /go/src/github.com/calebhiebert/hybread/vendor ]; then
-                curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o /go/bin/dep
-                chmod +x /go/bin/dep
-                /go/bin/dep ensure
-            fi
-
-      - save_cache:
-          key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
-          paths:
-            - /go/src/github.com/calebhiebert/hybread/vendor
+          name: Docker Build
+          command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM .
       - run:
-          name: test
+          name: Docker Push
           command: |
-            mkdir -p $GOCACHE
-            export GOOS=linux
-            export GOARCH=amd64
-            go build -v -o hybread
-
-            export GOOS=windows
-            export GOARCH=amd64
-            go build -v -o hybread.exe
-
-      - store_artifacts:
-          path: ./hybread
-      - store_artifacts:
-          path: ./hybread.exe
+            docker login -u $DOCKER_UNAME -p $DOCKER_PWORD
+            docker push panchem/hybread:$CIRCLE_BUILD_NUM
   build-client:
     docker:
       - image: circleci/node:8-stretch-browsers

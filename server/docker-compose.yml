@@ -1,0 +1,16 @@
+version: '3'
+services:
+  # PostgreSQL
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: hybread
+      POSTGRES_USER: hybread
+  # Redis
+  redis:
+    image: redis:5-alpine
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+  # App
+  hybread:
+    image: panchem/hybread
