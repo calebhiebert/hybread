@@ -11,7 +11,7 @@ jobs:
           path: ~/hybread
       - run:
           name: Docker Build
-          command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM .
+          command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM panchem/hybread:latest .
       - run:
           name: Docker Push
           command: |
@@ -62,17 +62,17 @@ jobs:
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
             git push https://$GH_TOKEN@github.com/calebhiebert/hybread.git $TARGET_BRANCH -q
-  # deploy-server:
-  #   machine:
-  #     enabled: true
-  #   steps:
-  #     - add_ssh_keys:
-  #         finterprints:
-  #           - 'cc:1e:3f:53:0e:d9:a9:66:b4:a1:ad:32:f9:50:d3:56'
-  #     - run:
-  #         name: Deploy Over SSH
-  #         command: |
-  #           ssh $SSH_USER@$SSH_HOST "/root/hybread/deploy.sh $CIRCLE_BUILD_NUM"
+  deploy-server:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          finterprints:
+            - '0f:8f:5b:84:3f:fd:35:48:15:b2:3a:d1:8b:9c:6c:e8'
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "~/hybread/deploy.sh latest"
 workflows:
   version: 2
   client:
@@ -87,9 +87,9 @@ workflows:
           filters:
             branches:
               only: master
-      # - deploy-server:
-      #     requires:
-      #       - build-server
-      #     filters:
-      #       branches:
-      #         only: master
+      - deploy-server:
+          requires:
+            - build-server
+          filters:
+            branches:
+              only: master
