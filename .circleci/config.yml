@@ -18,6 +18,7 @@ jobs:
             docker tag panchem/hybread:$CIRCLE_BUILD_NUM panchem/hybread:latest
             docker login -u $DOCKER_UNAME -p $DOCKER_PWORD
             docker push panchem/hybread:$CIRCLE_BUILD_NUM
+            docker push panchem/hybread:latest
   build-client:
     docker:
       - image: circleci/node:8-stretch-browsers
@@ -73,7 +74,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST "~/hybread/deploy.sh latest"
+            ssh $SSH_USER@$SSH_HOST "~/deploy.sh latest"
 workflows:
   version: 2
   client:
