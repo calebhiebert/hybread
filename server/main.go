@@ -77,7 +77,9 @@ func main() {
 
 // ConnectRedis establishes a connection to the redis server and runs some test commands
 func ConnectRedis() error {
-	config := &redis.Options{}
+	config := &redis.Options{
+		MaxRetries: 10,
+	}
 
 	// Check the environment for the host setting, default to localhost
 	if os.Getenv("RD_HOST") != "" {
