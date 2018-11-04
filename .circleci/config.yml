@@ -5,10 +5,10 @@ version: 2
 jobs:
   build-server:
     machine: true
-    working_directory: /go/src/github.com/calebhiebert/hybread/server
+    working_directory: ~/hybread/server
     steps:
       - checkout:
-          path: /go/src/github.com/calebhiebert/hybread
+          path: ~/hybread
       - run:
           name: Docker Build
           command: docker build -t panchem/hybread:$CIRCLE_BUILD_NUM .
