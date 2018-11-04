@@ -72,7 +72,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USERNAME@$SSH_HOST "/root/hybread/deploy.sh $CIRCLE_BUILD_NUM"
+            ssh $SSH_USER@$SSH_HOST "/root/hybread/deploy.sh $CIRCLE_BUILD_NUM"
 workflows:
   version: 2
   client:
