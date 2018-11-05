@@ -7,10 +7,10 @@ import * as Phaser from 'phaser';
 
 export class BreadHuntBread extends Phaser.GameObjects.Sprite {
   // Velocity (pixels per second moved)
-  private _xVelocity: number = 0;
-  private _yVelocity: number = 0;
+  private _xVelocity = 0;
+  private _yVelocity = 0;
   // Angular Velocity is in degrees per second
-  private _angularVelocity: number = 0;
+  private _angularVelocity = 0;
 
   // Amount taken away from x and y velocity per second
   private _drag: number;
@@ -66,7 +66,7 @@ export class BreadHuntBread extends Phaser.GameObjects.Sprite {
 
   public preUpdate(time, delta): void {
     // Convert the delta into seconds (phaser's delta is in milliseconds)
-    let d = delta / 1000;
+    const d = delta / 1000;
 
     // Apply movement based on the velocity
     this.x += this._xVelocity * d;
