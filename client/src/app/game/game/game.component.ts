@@ -1,6 +1,7 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { PreloadScene } from 'src/game/Preload.scene';
 import * as Phaser from 'phaser';
+import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 
 @Component({
   selector: 'app-game',
@@ -27,7 +28,7 @@ export class GameComponent implements AfterViewInit {
       height: window.innerWidth / this.ASPECT,
       canvas: this.gameCanvas.nativeElement,
       type: Phaser.AUTO,
-      scene: PreloadScene,
+      scene: [PreloadScene, BreadHuntScene],
     };
 
     this.game = new Phaser.Game(config);

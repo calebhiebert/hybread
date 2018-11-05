@@ -21,6 +21,7 @@ export class PreloadScene extends Phaser.Scene {
       this.add.text(5, 5, `${auth.user.id} - ${auth.user.username}`);
     });
 
+    // Create some text to show the loading percentage
     this.loadingText = this.add.text(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2,
@@ -31,29 +32,40 @@ export class PreloadScene extends Phaser.Scene {
       }
     );
 
+    // Set the rendering anchor to the center of the text
     this.loadingText.setOrigin(0.5, 0.5);
 
+    // Called when the loading percent is updated
     this.load.on('progress', (val) => {
-      console.log('PROG', val);
-
       this.loadingText.text = `${Math.round(val * 100)}%`;
     });
 
+    // Called when game loading is complete
     this.load.on('complete', () => {
-      console.log('COMPLETE');
-
+      // Destroy the loading text as we do not need it anymore
       this.loadingText.destroy();
+
+      // Temporary, for development purposes
+      setTimeout(() => {
+        this.scene.start('bread-hunt');
+      }, 250);
     });
 
+    /**
+     * START ASSET LOADING
+     */
     this.load.image('bread', '/assets/bread.png');
   }
 
   create(): void {
+    // Render the bread logo
     this.breadLogo = this.add.image(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 - 30,
       'bread'
     );
+
+    // Render the logo text
     this.logoText = this.add.text(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 + 120,
