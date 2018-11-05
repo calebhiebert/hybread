@@ -4,9 +4,8 @@
  * This file contains a Phaser button implimentation
  */
 import * as Phaser from 'phaser';
-import { EventEmitter } from 'events';
 
-export class Button extends EventEmitter {
+export class Button extends Phaser.Events.EventEmitter {
   private button: Phaser.GameObjects.Sprite;
   private text: Phaser.GameObjects.Text;
 
