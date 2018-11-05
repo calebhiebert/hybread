@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser';
 import { HybreadAPI } from 'src/api';
+import { ITitleCardConfig } from './MinigameTitleCard.scene';
 
 export class PreloadScene extends Phaser.Scene {
   private loadingText: Phaser.GameObjects.Text;
@@ -29,7 +30,7 @@ export class PreloadScene extends Phaser.Scene {
       {
         align: 'center',
         fontFamily: 'Spicy Rice',
-      }
+      },
     );
 
     // Set the rendering anchor to the center of the text
@@ -45,9 +46,18 @@ export class PreloadScene extends Phaser.Scene {
       // Destroy the loading text as we do not need it anymore
       this.loadingText.destroy();
 
+      const titleCardConfig: ITitleCardConfig = {
+        image: 'tc-bread-hunt',
+        minDuration: 4,
+        scale: 1.35,
+        sceneAfter: 'bread-hunt',
+        title: 'Bread Hunt',
+        subtitle: 'They want your recipe, what will you do to stop them?',
+      };
+
       // Temporary, for development purposes
       setTimeout(() => {
-        this.scene.start('bread-hunt');
+        this.scene.start('title-card', titleCardConfig);
       }, 250);
     });
 
@@ -55,6 +65,7 @@ export class PreloadScene extends Phaser.Scene {
      * START ASSET LOADING
      */
     this.load.image('bread', '/assets/bread.png');
+    this.load.image('tc-bread-hunt', '/assets/tc/bread-hunt.png');
   }
 
   create(): void {
@@ -62,7 +73,7 @@ export class PreloadScene extends Phaser.Scene {
     this.breadLogo = this.add.image(
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 - 30,
-      'bread'
+      'bread',
     );
 
     // Render the logo text
@@ -74,7 +85,7 @@ export class PreloadScene extends Phaser.Scene {
         align: 'center',
         fontFamily: 'Spicy Rice',
         fontSize: '65px',
-      }
+      },
     );
 
     this.breadLogo.setOrigin(0.5, 0.5);

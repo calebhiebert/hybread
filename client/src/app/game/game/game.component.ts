@@ -2,6 +2,7 @@ import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { PreloadScene } from 'src/game/Preload.scene';
 import * as Phaser from 'phaser';
 import { BreadHuntScene } from 'src/game/BreadHunt.scene';
+import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 
 @Component({
   selector: 'app-game',
@@ -10,6 +11,7 @@ import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 })
 export class GameComponent implements AfterViewInit {
   private ASPECT = 16.0 / 9.0;
+  private WIDTH = 1600;
 
   @ViewChild('gamecontainer')
   private gameContainer: HTMLElement;
@@ -24,11 +26,11 @@ export class GameComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const config: GameConfig = {
-      width: window.innerWidth,
-      height: window.innerWidth / this.ASPECT,
+      width: this.WIDTH,
+      height: this.WIDTH / this.ASPECT,
       canvas: this.gameCanvas.nativeElement,
       type: Phaser.AUTO,
-      scene: [PreloadScene, BreadHuntScene],
+      scene: [PreloadScene, MinigameTitleCard, BreadHuntScene],
     };
 
     this.game = new Phaser.Game(config);
