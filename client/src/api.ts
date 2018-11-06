@@ -50,9 +50,7 @@ export class HybreadAPI {
    * Checks if a given username is in use or not already
    * @param username string
    */
-  public checkUsernameAvailability(
-    username: string
-  ): Promise<IUsernameAvailability> {
+  public checkUsernameAvailability(username: string): Promise<IUsernameAvailability> {
     return this._http
       .get('/username-available', {
         params: {
@@ -69,6 +67,40 @@ export class HybreadAPI {
   public checkAuthenticationStatus(): Promise<IAuthenticationStatus> {
     return this._http
       .get('/check-authentication')
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
+   * Gets a list of all available store items
+   */
+  public getItems(): Promise<IItemsResponse> {
+    return this._http
+      .get('/items')
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
+   * Gets the current user's inventory
+   */
+  public getInventory(): Promise<IInventoryItem[]> {
+    return this._http
+      .get('/inventory')
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
+   * Makes an item purchase for a user
+   * Takes the funds out of the user's account
+   * Returns an error on insufficient funds
+   * @param itemId id of the item to be purchased
+   * @param quantity how many of the item to purchase
+   */
+  public makePurchase(itemId: number, quantity: number): Promise<void> {
+    return this._http
+      .post('/purchase', { itemId, quantity })
       .then(this.handleSuccess)
       .catch(this.handleError);
   }
@@ -121,4 +153,30 @@ interface IUsernameAvailability {
 interface IAuthenticationStatus {
   authenticated: boolean;
   user?: IUser;
+}
+
+interface IItemsResponse {
+  count: number;
+  page: number;
+  totalPages: number;
+  items: IITem[];
+}
+
+type ItemCategory = 'tool' | 'heat-source' | 'cooking-surface' | 'base-ingredient' | 'extra-ingredient';
+
+interface IITem {
+  id: number;
+  name: string;
+  category: ItemCategory;
+  description: string;
+  cost: number;
+}
+
+interface IInventoryItem {
+  id: number;
+  name: string;
+  category: ItemCategory;
+  description: string;
+  cost: number;
+  count: number;
 }
