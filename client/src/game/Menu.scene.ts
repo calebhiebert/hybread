@@ -66,7 +66,7 @@ export class MenuScene extends Phaser.Scene {
       this.messageService.sendMessage({ type: 'store-open' });
     });
 
-    // Create button
+    // Create bread hunt button
     const button = new Button(
       this,
       (this.game.config.width as number) / 2,
