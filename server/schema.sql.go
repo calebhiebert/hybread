@@ -7,7 +7,7 @@ package main
 
 func GetDropSchema() string {
 	return `
-	DROP TABLE "user_items";
+		DROP TABLE "user_items";
 		DROP TABLE "users";
 		DROP TABLE "items";
 	`

@@ -188,7 +188,7 @@ func ConnectDatabase() error {
 	err = dropDatabase()
 	if err != nil {
 		// There may have been an error with dropping non-existent tables, this can be safely ignored
-		return err
+		// return err
 	}
 
 	// Creates all database tables
