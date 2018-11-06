@@ -1,7 +1,7 @@
 /*
 	water.go
 
-	This file contains the implimentations for the water items\
+	This file contains the implimentations for the water items
 
 	Available Water Types:
 		- Water
