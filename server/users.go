@@ -38,11 +38,20 @@ type User struct {
 func CreateUser(c *gin.Context) {
 	var inputArgs CreateUserArgs
 
+	//Parses the data out of the post request
+	err := c.ShouldBindJSON(&inputArgs)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "Invalid arguments",
+			"ctx":   err,
+		})
+		return
+	}
+
 	// Check if the username is too short.
 	if len(inputArgs.Username) < 3 {
 		c.JSON(422, gin.H{
 			"error": "Username is too short!",
-			"ctx":   inputArgs,
 		})
 		return
 	}
@@ -59,15 +68,6 @@ func CreateUser(c *gin.Context) {
 	if len(inputArgs.Password) < 3 {
 		c.JSON(422, gin.H{
 			"error": "Password is too short!",
-		})
-		return
-	}
-
-	err := c.ShouldBindJSON(&inputArgs)
-	if err != nil {
-		c.JSON(400, gin.H{
-			"error": "Invalid arguments",
-			"ctx":   err,
 		})
 		return
 	}
