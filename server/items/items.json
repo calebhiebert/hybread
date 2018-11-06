@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Water",
+		"category": "base-ingredient",
+		"description": "It's wet",
+		"cost": 0
+	},
+	{
+		"name": "Fiji Water",
+		"category": "base-ingredient",
+		"description": "Exotic wetness",
+		"cost": 120
+	}
+]

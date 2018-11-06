@@ -42,8 +42,17 @@ func main() {
 		fmt.Println("Could not connect to Database")
 		log.Fatal(err)
 	}
-
 	defer sess.Close()
+
+	err := SeedItems()
+	if err != nil {
+		fmt.Println("Error while seeding items", err)
+	}
+
+	err = SeedUser("test", "test")
+	if err != nil {
+		fmt.Println("Error seeding user", err)
+	}
 
 	// Start up the gin server
 	r := gin.Default()
@@ -80,6 +89,9 @@ func main() {
 
 	// Authenticated routes
 	v1Auth.GET("/users", GetUsers)
+	v1Auth.GET("/items", GetItems)
+	v1Auth.GET("/inventory", GetInventory)
+	v1Auth.POST("/purchase", PurchaseItem)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "The requested route was not found on this server"})
@@ -176,7 +188,7 @@ func ConnectDatabase() error {
 	err = dropDatabase()
 	if err != nil {
 		// There may have been an error with dropping non-existent tables, this can be safely ignored
-		// return err
+		return err
 	}
 
 	// Creates all database tables

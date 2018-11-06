@@ -6,6 +6,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"time"
 
@@ -30,6 +31,7 @@ type User struct {
 	ID       int64  `db:"id,omitempty" json:"id"`
 	Username string `db:"username" json:"username"`
 	Password string `db:"password" json:"password,omitempty"`
+	Currency int    `db:"currency" json:"currency"`
 }
 
 // CreateUser the handler for creating a new user account
@@ -100,7 +102,7 @@ func CheckAuthentication(c *gin.Context) {
 			"authenticated": false,
 		})
 	} else {
-		scrubbedUser := user.(*User)
+		scrubbedUser := user.(User)
 		scrubbedUser.Password = ""
 
 		c.JSON(200, gin.H{
@@ -146,6 +148,20 @@ func Login(c *gin.Context) {
 		return
 	}
 
+	// Check for an existing token
+	existingToken, err := rds.Get(fmt.Sprintf("id:%d", user.ID)).Result()
+	if err != nil {
+		// The error can be safely ignored if it's just a nil message
+		if err.Error() != "redis: nil" {
+			c.JSON(500, gin.H{"error": "Error during token lookup", "ctx": err})
+			return
+		}
+	} else {
+		// Send the existing token to avoid creating a bunch of extra tokens
+		c.JSON(200, gin.H{"token": existingToken})
+		return
+	}
+
 	// Generate a new Bearer token for the user
 	token, err := nanoid.Nanoid(64)
 	if err != nil {
@@ -157,6 +173,12 @@ func Login(c *gin.Context) {
 	err = rds.Set("auth:"+token, user.ID, 24*time.Hour).Err()
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Error while caching token", "ctx": err})
+		return
+	}
+	// Save the token in Redis for 24 hours. The redis value is just the user's id
+	err = rds.Set(fmt.Sprintf("id:%d", user.ID), token, 24*time.Hour).Err()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Error while caching id-token", "ctx": err})
 		return
 	}
 

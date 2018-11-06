@@ -59,7 +59,7 @@ func AuthMiddleware() gin.HandlerFunc {
 				}
 			}
 
-			c.Set("user", &user)
+			c.Set("user", user)
 			c.Next()
 		}
 	}
@@ -68,10 +68,17 @@ func AuthMiddleware() gin.HandlerFunc {
 // RequireAuthMiddleware this middleware checks to make sure the "user" property is set, if it is not, it returns an unauthorized error
 func RequireAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		_, exists := c.Get("user")
+		userVal, exists := c.Get("user")
 
-		if !exists {
-			c.JSON(403, gin.H{"error": "This action requires authentication"})
+		if userVal == nil {
+			c.AbortWithStatusJSON(403, gin.H{"error": "This action requires authentication"})
+			return
+		}
+
+		user := userVal.(User)
+
+		if !exists || user.ID == 0 {
+			c.AbortWithStatusJSON(403, gin.H{"error": "This action requires authentication"})
 			return
 		}
 

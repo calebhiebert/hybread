@@ -13,13 +13,12 @@ import (
 func initializeDatabase() error {
 	schema := GetSchema()
 
-	res, err := sess.Exec(schema)
+	_, err := sess.Exec(schema)
 	if err != nil {
 		return err
 	}
 
-	fmt.Printf("SCHEMA %+v\n", res)
-
+	fmt.Println("Initialized Database")
 	return nil
 }
 
