@@ -1,12 +1,24 @@
 /*
 	water.go
 
-	This file contains the implimentations for the water items
+	This file contains the implimentations for the water items\
+
+	Available Water Types:
+		- Water
+		- Fiji Water
+		- Glacier Water
+		- Mystery Water
+		- Wator
+		- Dirty Water
+		- Child's Tears
+		- Fountain of Youth Water
+		- Angels Tears
 */
 package baker
 
 type Water struct {
 	WaterType string
+	Amount    int
 }
 
 func (w Water) mix(second int, bread *Bread) *Bread {

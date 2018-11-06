@@ -12,7 +12,7 @@ func TestBaking(t *testing.T) {
 		RiseMinutes:  5,
 		KneadSeconds: 5,
 		BakeMinutes:  60,
-		Items:        []baker.BreadAffector{baker.Water{WaterType: "Fiji Water"}},
+		Items:        []baker.BreadAffector{baker.Water{WaterType: "Fiji Water", Amount: 3}},
 	}
 
 	baker.Bake(&bread)
