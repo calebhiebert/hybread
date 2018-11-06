@@ -97,8 +97,8 @@ export class MenuScene extends Phaser.Scene {
     );
 
     //Logs the user out of the game
-    logout.on('click', () => {
-      this.api.logout();
+    logout.on('click', async () => {
+      await this.api.logout();
       window.location.reload();
     });
   }
