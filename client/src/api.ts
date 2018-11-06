@@ -3,7 +3,6 @@
  *
  * This file contains all methods required to access the Hybread API
  */
-
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from './environments/environment';
 

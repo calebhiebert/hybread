@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  background: url('/assets/bg.png') #613d19;
+  background-blend-mode: color-burn;
 }
 
 canvas {
