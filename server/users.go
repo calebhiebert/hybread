@@ -39,28 +39,43 @@ func CreateUser(c *gin.Context) {
 	var inputArgs CreateUserArgs
 
 	// Check if we have the right input
-	// TODO validate input for things like username length etc...
-	err := c.ShouldBindJSON(&inputArgs)
-	if err != nil {
-		c.JSON(400, gin.H{
-			"error": "Invalid arguments",
+	if len(inputArgs.Username) > 3 && len(inputArgs.Username) <= 32 {
+		err := c.ShouldBindJSON(&inputArgs)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"error": "Invalid arguments",
+				"ctx":   err,
+			})
+			return
+		}
+	} else {
+		c.JSON(422, gin.H{
+			"error": "Username must be a minimum length of 3 and maxiumum length of 32",
 			"ctx":   err,
 		})
 		return
 	}
 
 	// Hash the user's password for storing in the database
-	pword, err := bcrypt.GenerateFromPassword([]byte(inputArgs.Password), 12)
-	if err != nil {
-		c.JSON(500, gin.H{
-			"error": "Unknown error occured while processing",
+
+	if len(inputArgs.Password) > 3 {
+		pword, err := bcrypt.GenerateFromPassword([]byte(inputArgs.Password), 12)
+		if err != nil {
+			c.JSON(500, gin.H{
+				"error": "Unknown error occured while processing",
+				"ctx":   err,
+			})
+			return
+		}
+		// Overwrite the inputargs password field with the hash so we don't store any plaintext passwords
+		inputArgs.Password = string(pword)
+	} else {
+		c.JSON(422, gin.H{
+			"error": "Password must be a miniumum length of 3",
 			"ctx":   err,
 		})
 		return
 	}
-
-	// Overwrite the inputargs password field with the hash so we don't store any plaintext passwords
-	inputArgs.Password = string(pword)
 
 	// Create a user instance to be saved in the database
 	user := User{
