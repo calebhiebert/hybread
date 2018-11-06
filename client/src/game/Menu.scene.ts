@@ -50,18 +50,7 @@ export class MenuScene extends Phaser.Scene {
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
 
-    const goodBreadButton = new Button(
-      this,
-      (this.game.config.width as number) / 2,
-      (this.game.config.height as number) / 2 - 60,
-      'Good Bread'
-    );
-
-    goodBreadButton.on('click', () => {
-      this.scene.start('godrays');
-    });
-
-    // Create button
+    // Create bread hunt button
     const button = new Button(
       this,
       (this.game.config.width as number) / 2,
@@ -80,6 +69,19 @@ export class MenuScene extends Phaser.Scene {
       };
 
       this.scene.start('title-card', titleCardConfig);
+    });
+
+    // Create logout button
+    const logout = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 - 50,
+      'Logout',
+    );
+
+    logout.on('click', () => {
+      //Logout here
+      console.log('logging out');
     });
   }
 }
