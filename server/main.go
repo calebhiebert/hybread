@@ -185,10 +185,13 @@ func ConnectDatabase() error {
 
 	// This can be commented out sometimes
 	// Completely clears the database
-	err = dropDatabase()
-	if err != nil {
-		// There may have been an error with dropping non-existent tables, this can be safely ignored
-		// return err
+
+	if os.Getenv("RESET_DB") == "true" {
+		err = dropDatabase()
+		if err != nil {
+			// There may have been an error with dropping non-existent tables, this can be safely ignored
+			// return err
+		}
 	}
 
 	// Creates all database tables

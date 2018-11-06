@@ -7,7 +7,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 // Create all database tables and print the result
@@ -25,14 +24,12 @@ func initializeDatabase() error {
 
 // Drop all database tables and print the result
 func dropDatabase() error {
-	if os.Getenv("RESET_DB") == "true" {
-		schema := GetDropSchema()
-
-		res, err := sess.Exec(schema)
-		if err != nil {
-			return err
-		}
-		fmt.Printf("SCHEMA %+v\n", res)
+	schema := GetDropSchema()
+	res, err := sess.Exec(schema)
+	if err != nil {
+		return err
 	}
+	fmt.Printf("SCHEMA %+v\n", res)
+
 	return nil
 }
