@@ -4,6 +4,7 @@ import { GameComponent } from './game/game/game.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { StoreComponent } from './game/store/store.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'game',
     component: GameComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'store',
+    component: StoreComponent,
     canActivate: [AuthGuard],
   },
 ];

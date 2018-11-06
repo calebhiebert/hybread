@@ -163,7 +163,7 @@ interface IItemsResponse {
 
 type ItemCategory = 'tool' | 'heat-source' | 'cooking-surface' | 'base-ingredient' | 'extra-ingredient';
 
-interface IITem {
+export interface IITem {
   id: number;
   name: string;
   category: ItemCategory;
