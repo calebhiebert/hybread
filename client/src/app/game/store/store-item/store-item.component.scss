@@ -1,12 +1,10 @@
 .image-container {
-  background-image: url('/assets/items/Water.png');
   background-repeat: no-repeat;
   background-size: contain;
   image-rendering: pixelated;
+  background-position: center;
   width: 100%;
   height: 100%;
-  // height: fit-content;
-  // width: fit-content;
 }
 
 .store-item-container {
@@ -17,17 +15,16 @@
   flex-grow: 1;
   flex-basis: 16%;
   overflow: hidden;
-  // margin: 0.5rem;
   cursor: pointer;
   border-radius: 0.25rem;
 
   background-color: rgba(0, 0, 0, 0.589);
-  transition: transform 0.23s, opacity 0.5s;
+  transition: transform 0.23s, opacity 0.35s;
 }
 
 .back,
 .front {
-  transition: opacity 0.5s;
+  transition: opacity 0.35s;
 }
 
 .store-item-container > .back {

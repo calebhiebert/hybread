@@ -2,13 +2,13 @@
   {
     "name": "Water",
     "category": "base-ingredient",
-    "description": "It's wet",
+    "description": "Seems wet.",
     "cost": 0
   },
   {
     "name": "Glacier Water",
     "category": "base-ingredient",
-    "description": "It's wet",
+    "description": "Water from a glacier",
     "cost": 0
   },
   {
@@ -44,13 +44,13 @@
   {
     "name": "Angel's Tears",
     "category": "base-ingredient",
-    "description": "It's wet",
+    "description": "The tears of an angel",
     "cost": 0
   },
   {
     "name": "Fiji Water",
     "category": "base-ingredient",
-    "description": "Exotic wetness",
+    "description": "Water from Fiji",
     "cost": 120
   }
 ]

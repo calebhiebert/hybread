@@ -1,9 +1,9 @@
 <!-- <div class="container"> -->
 <div class="flex">
-  <div class="w-1/4"><app-store-sidebar></app-store-sidebar></div>
+  <div class="w-1/4"><app-store-sidebar (search)="onSearchChange($event)"></app-store-sidebar></div>
   <div class="store-container">
     <div class="w-full items-container" *ngIf="items">
-      <app-store-item *ngFor="let item of items" [item]="item"></app-store-item>
+      <app-store-item *ngFor="let item of searchItems" [item]="item"></app-store-item>
     </div>
   </div>
 </div>

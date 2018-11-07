@@ -13,4 +13,8 @@ export class StoreItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public get backgroundImageCSS() {
+    return `url("assets/items/${this.item.name}.png")`;
+  }
 }
