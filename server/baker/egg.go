@@ -20,6 +20,29 @@ type Egg struct {
 }
 
 func (w Egg) mix(second int, bread *Bread) *Bread {
+	if w.EggType == "Eggs" {
+
+	}
+
+	if w.EggType == "Organic Eggs" {
+
+	}
+
+	if w.EggType == "Golden Eggs" {
+
+	}
+
+	if w.EggType == "Dragon's Eggs" {
+
+	}
+
+	if w.EggType == "Fish Eggs" {
+
+	}
+
+	if w.EggType == "Mystery Eggs" {
+
+	}
 	return bread
 }
 
@@ -36,8 +59,5 @@ func (w Egg) pan(second int, bread *Bread) *Bread {
 }
 
 func (w Egg) bake(minute int, bread *Bread) *Bread {
-	if w.EggType == "Organic Eggs" && minute == 50 {
-		// bread.Tastiness += 6000
-	}
 	return bread
 }
