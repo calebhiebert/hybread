@@ -8,6 +8,7 @@ import { MessageService, IMessage } from 'src/app/message.service';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { Router } from '@angular/router';
 import { HybreadAPI } from 'src/api';
+import { GoodBreadScene } from 'src/game/GoodBread.scene';
 
 @Component({
   selector: 'app-game',
