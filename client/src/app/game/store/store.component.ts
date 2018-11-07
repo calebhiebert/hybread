@@ -10,6 +10,8 @@ export class StoreComponent implements OnInit {
   // The list of purchasable items
   public items: IITem[];
 
+  public searchTerm = '';
+
   private api: HybreadAPI;
 
   constructor() {
@@ -22,5 +24,33 @@ export class StoreComponent implements OnInit {
       this.items = itemResponse.items;
       console.log(this.items);
     } catch (err) {}
+  }
+
+  /**
+   * Returns the list of items, but filtered with searchTerm
+   * Filtering looks for the search term in either the item name or description
+   */
+  public get searchItems() {
+    if (!this.items) {
+      return [];
+    } else if (this.searchTerm === '') {
+      return this.items;
+    } else {
+      return this.items
+        .slice()
+        .filter(
+          (i) =>
+            i.name.toLowerCase().indexOf(this.searchTerm) !== -1 ||
+            i.description.toLowerCase().indexOf(this.searchTerm) !== -1,
+        );
+    }
+  }
+
+  /**
+   * Called when the user changes their search term
+   * @param searchTerm what the user is searching for
+   */
+  onSearchChange(searchTerm) {
+    this.searchTerm = searchTerm;
   }
 }

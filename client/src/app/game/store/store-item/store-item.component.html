@@ -1,7 +1,7 @@
 <div class="store-item-container">
   <div class="w-full h-full front">
     <div class="spicy text-center text-2xl text-white">{{ item.name }}</div>
-    <div class="image-container"></div>
+    <div class="image-container" [style.background-image]="backgroundImageCSS"></div>
   </div>
-  <div class="w-full h-full back text-white">Hi there</div>
+  <div class="w-full h-full back text-white spicy">{{ item.description }}</div>
 </div>

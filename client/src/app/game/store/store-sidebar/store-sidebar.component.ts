@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-store-sidebar',
   templateUrl: './store-sidebar.component.html',
-  styleUrls: ['./store-sidebar.component.css']
+  styleUrls: ['./store-sidebar.component.css'],
 })
 export class StoreSidebarComponent implements OnInit {
+  @Output()
+  public search: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  public searchControl = new FormControl();
+
+  constructor() {}
 
   ngOnInit() {
+    this.searchControl.valueChanges.subscribe((value) => {
+      console.log(value);
+      this.search.emit(value);
+    });
   }
-
 }
