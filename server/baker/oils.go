@@ -39,12 +39,19 @@ func (w Oil) pan(bread *Bread) *Bread {
 func (w Oil) bake(minute int, bread *Bread) *Bread {
 	switch w.OilType {
 	case "Butter":
+
 	case "Grass-Fed Butter":
+
 	case "Vegetable Oil":
+
 	case "Pixie Oil":
+
 	case "Mystery Grease":
+
 	case "Engine Grease":
+
 	case "Olive Oil":
+
 	}
 	return bread
 }
