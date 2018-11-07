@@ -25,15 +25,15 @@ func (w Egg) mix(second int, bread *Bread) *Bread {
 	switch w.EggType {
 	case "Eggs":
 
-	case: "Organic Eggs":
-	
-	case: "Golden Eggs":
+	case "Organic Eggs":
 
-	case: "Dragon's Eggs":
-	
-	case: "Fish Eggs":
-	
-	case: "Mystery Eggs":
+	case "Golden Eggs":
+
+	case "Dragon's Eggs":
+
+	case "Fish Eggs":
+
+	case "Mystery Eggs":
 
 	}
 
