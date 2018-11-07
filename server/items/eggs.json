@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Eggs",
+    "category": "base-ingredient",
+    "description": "From a chicken",
+    "cost": 0
+  },
+  {
+    "name": "Organic Eggs",
+    "category": "base-ingredient",
+    "description": "Raised without pesticides. Non-gmo.",
+    "cost": 0
+  },
+  {
+    "name": "Golden Eggs",
+    "category": "base-ingredient",
+    "description": "Eggs from a golden hen.",
+    "cost": 0
+  },
+  {
+    "name": "Dragon's Eggs",
+    "category": "base-ingredient",
+    "description": "... If you survive",
+    "cost": 0
+  },
+  {
+    "name": "Fish Eggs",
+    "category": "base-ingredient",
+    "description": "Wait what?",
+    "cost": 0
+  },
+  {
+    "name": "Mystery Eggs",
+    "category": "base-ingredient",
+    "description": "???",
+    "cost": 0
+  }
+]

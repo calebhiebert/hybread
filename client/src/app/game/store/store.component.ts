@@ -10,6 +10,8 @@ export class StoreComponent implements OnInit {
   // The list of purchasable items
   public items: IITem[];
 
+  public cart: { item: IITem; quantity: number }[] = [];
+
   public searchTerm = '';
 
   private api: HybreadAPI;
@@ -52,5 +54,15 @@ export class StoreComponent implements OnInit {
    */
   onSearchChange(searchTerm) {
     this.searchTerm = searchTerm;
+  }
+
+  /**
+   * Called when an item is added to the cart
+   * @param item item that was added to cart
+   */
+  onItemAddedToCart(item: IITem) {
+    // TODO check if the user has enough money
+
+    this.cart.push({ item, quantity: 1 });
   }
 }
