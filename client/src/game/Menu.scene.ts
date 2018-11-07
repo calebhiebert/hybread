@@ -30,23 +30,43 @@ export class MenuScene extends Phaser.Scene {
 
   create() {
     // Render the bread logo
-    this.breadLogo = this.add.image((this.game.config.width as number) / 2, 100, 'bread');
+    this.breadLogo = this.add.image(
+      (this.game.config.width as number) / 2,
+      100,
+      'bread'
+    );
 
     // Render the logo text
-    this.logoText = this.add.text((this.game.config.width as number) / 2, 250, 'Hybread', {
-      fontFamily: 'Spicy Rice',
-      fontSize: '65px',
-    });
+    this.logoText = this.add.text(
+      (this.game.config.width as number) / 2,
+      250,
+      'Hybread',
+      {
+        fontFamily: 'Spicy Rice',
+        fontSize: '65px',
+      }
+    );
 
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
+
+    const goodBreadButton = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 - 60,
+      'Good Bread'
+    );
+
+    goodBreadButton.on('click', () => {
+      this.scene.start('godrays');
+    });
 
     // Create button
     const button = new Button(
       this,
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 - 120,
-      'Bread Hunt',
+      'Bread Hunt'
     );
 
     button.on('click', () => {

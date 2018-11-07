@@ -4,6 +4,7 @@ import * as Phaser from 'phaser';
 import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
+import { GoodBreadScene } from 'src/game/GoodBread.scene';
 
 @Component({
   selector: 'app-game',
@@ -31,7 +32,13 @@ export class GameComponent implements AfterViewInit {
       height: this.WIDTH / this.ASPECT,
       canvas: this.gameCanvas.nativeElement,
       type: Phaser.AUTO,
-      scene: [PreloadScene, MenuScene, MinigameTitleCard, BreadHuntScene],
+      scene: [
+        PreloadScene,
+        MenuScene,
+        MinigameTitleCard,
+        GoodBreadScene,
+        BreadHuntScene,
+      ],
     };
 
     this.game = new Phaser.Game(config);

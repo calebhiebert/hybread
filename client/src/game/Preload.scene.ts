@@ -20,7 +20,7 @@ export class PreloadScene extends Phaser.Scene {
       {
         align: 'center',
         fontFamily: 'Spicy Rice',
-      },
+      }
     );
 
     // Set the rendering anchor to the center of the text
@@ -42,8 +42,12 @@ export class PreloadScene extends Phaser.Scene {
      * START ASSET LOADING
      */
     this.load.image('bread', '/assets/bread.png');
+    this.load.image('sunrise', '/assets/sunrise.png');
     this.load.image('tc-bread-hunt', '/assets/tc/bread-hunt.png');
     this.load.image('ui-button', '/assets/ui/buttonLong_brown.png');
-    this.load.image('ui-button-pressed', '/assets/ui/buttonLong_brown_pressed.png');
+    this.load.image(
+      'ui-button-pressed',
+      '/assets/ui/buttonLong_brown_pressed.png'
+    );
   }
 }
