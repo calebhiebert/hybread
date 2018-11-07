@@ -22,12 +22,12 @@ type Water struct {
 }
 
 func (w Water) mix(second int, bread *Bread) *Bread {
-	bread.Tastiness++
+	// bread.Tastiness++
 	return bread
 }
 
 func (w Water) rise(minute int, bread *Bread) *Bread {
-	bread.Tastiness--
+	// bread.Tastiness--
 	return bread
 }
 
@@ -40,8 +40,28 @@ func (w Water) pan(bread *Bread) *Bread {
 }
 
 func (w Water) bake(minute int, bread *Bread) *Bread {
-	if w.WaterType == "Fiji Water" && minute == 50 {
-		bread.Tastiness += 6000
+	// if w.WaterType == "Fiji Water" && minute == 50 {
+	// 	bread.Tastiness += 6000
+	// }
+
+	switch w.WaterType {
+	case "Water":
+
+	case "Fiji Water":
+
+	case "Glacier Water":
+
+	case "Mystery Water":
+
+	case "Wator":
+
+	case "Dirty Water":
+
+	case "Child's Tears":
+
+	case "Fountain of Youth Water":
+
+	case "Angels Tears":
 	}
 
 	return bread
