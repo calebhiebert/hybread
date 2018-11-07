@@ -38,8 +38,7 @@ type User struct {
 func CreateUser(c *gin.Context) {
 	var inputArgs CreateUserArgs
 
-	// Check if we have the right input
-	// TODO validate input for things like username length etc...
+	//Parses the data out of the post request
 	err := c.ShouldBindJSON(&inputArgs)
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -49,12 +48,35 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
+	// Check if the username is too short.
+	if len(inputArgs.Username) < 3 {
+		c.JSON(400, gin.H{
+			"error": "Username is too short!",
+		})
+		return
+	}
+
+	// Check if the username is too long
+	if len(inputArgs.Username) > 32 {
+		c.JSON(400, gin.H{
+			"error": "Username is too long!",
+		})
+		return
+	}
+
+	//Check if the password is too short
+	if len(inputArgs.Password) < 3 {
+		c.JSON(400, gin.H{
+			"error": "Password is too short!",
+		})
+		return
+	}
+
 	// Hash the user's password for storing in the database
 	pword, err := bcrypt.GenerateFromPassword([]byte(inputArgs.Password), 12)
 	if err != nil {
 		c.JSON(500, gin.H{
 			"error": "Unknown error occured while processing",
-			"ctx":   err,
 		})
 		return
 	}
