@@ -1,10 +1,10 @@
-<div class="container">
-  <div class="flex">
-    <div class="w-1/4">
-      <app-store-sidebar></app-store-sidebar>
-    </div>
-    <div class="w-full" *ngIf="items">
+<!-- <div class="container"> -->
+<div class="flex">
+  <div class="w-1/4"><app-store-sidebar></app-store-sidebar></div>
+  <div class="store-container">
+    <div class="w-full items-container" *ngIf="items">
       <app-store-item *ngFor="let item of items" [item]="item"></app-store-item>
     </div>
   </div>
 </div>
+<!-- </div> -->

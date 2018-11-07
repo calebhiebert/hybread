@@ -4,7 +4,7 @@ import { IITem } from 'src/api';
 @Component({
   selector: 'app-store-item',
   templateUrl: './store-item.component.html',
-  styleUrls: ['./store-item.component.css'],
+  styleUrls: ['./store-item.component.scss'],
 })
 export class StoreItemComponent implements OnInit {
   @Input()
