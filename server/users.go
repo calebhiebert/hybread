@@ -50,7 +50,7 @@ func CreateUser(c *gin.Context) {
 
 	// Check if the username is too short.
 	if len(inputArgs.Username) < 3 {
-		c.JSON(422, gin.H{
+		c.JSON(400, gin.H{
 			"error": "Username is too short!",
 		})
 		return
@@ -58,7 +58,7 @@ func CreateUser(c *gin.Context) {
 
 	// Check if the username is too long
 	if len(inputArgs.Username) > 32 {
-		c.JSON(422, gin.H{
+		c.JSON(400, gin.H{
 			"error": "Username is too long!",
 		})
 		return
@@ -66,7 +66,7 @@ func CreateUser(c *gin.Context) {
 
 	//Check if the password is too short
 	if len(inputArgs.Password) < 3 {
-		c.JSON(422, gin.H{
+		c.JSON(400, gin.H{
 			"error": "Password is too short!",
 		})
 		return
