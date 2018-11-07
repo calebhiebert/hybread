@@ -24,6 +24,14 @@ export class GoodBreadScene extends Phaser.Scene {
     this.rays.setAlpha(0);
     this.rays.setBlendMode(Phaser.BlendModes.HARD_LIGHT);
 
+    const text = this.add.text(midX, midY + 200, 'Nice 👌', {
+      fontFamily: 'Spicy Rice',
+      fontSize: '86px',
+      stroke: '#000',
+      strokeThickness: 10,
+    });
+    text.setOrigin(0.5, 0.5);
+
     const bread = this.add.image(midX, 0 - 250, 'bread');
 
     const breadTween = this.add.tween({
