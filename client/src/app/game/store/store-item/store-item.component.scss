@@ -1,0 +1,52 @@
+.image-container {
+  background-image: url('/assets/items/Water.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  width: 100%;
+  height: 100%;
+  // height: fit-content;
+  // width: fit-content;
+}
+
+.store-item-container {
+  height: 17rem;
+  width: 16rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  flex-grow: 1;
+  flex-basis: 16%;
+  overflow: hidden;
+  // margin: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+
+  background-color: rgba(0, 0, 0, 0.589);
+  transition: transform 0.23s, opacity 0.5s;
+}
+
+.back,
+.front {
+  transition: opacity 0.5s;
+}
+
+.store-item-container > .back {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.store-item-container:hover > .front {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.store-item-container:hover > .back {
+  height: auto;
+  opacity: 1;
+}
+
+.store-item-container:hover {
+  transform: scale(1.05, 1.05);
+}

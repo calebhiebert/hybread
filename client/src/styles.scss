@@ -15,3 +15,9 @@ html {
 .spicy {
   font-family: 'Spicy Rice', cursive !important;
 }
+
+app-root,
+app-store {
+  height: 100%;
+  display: block;
+}

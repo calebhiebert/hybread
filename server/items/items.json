@@ -1,14 +1,56 @@
 [
-	{
-		"name": "Water",
-		"category": "base-ingredient",
-		"description": "It's wet",
-		"cost": 0
-	},
-	{
-		"name": "Fiji Water",
-		"category": "base-ingredient",
-		"description": "Exotic wetness",
-		"cost": 120
-	}
+  {
+    "name": "Water",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Glacier Water",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Mystery Water",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Wator",
+    "category": "base-ingredient",
+    "description": "What is Wator?",
+    "cost": 0
+  },
+  {
+    "name": "Dirty Water",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Child's Tears",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Fountain of Youth Water",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Angel's Tears",
+    "category": "base-ingredient",
+    "description": "It's wet",
+    "cost": 0
+  },
+  {
+    "name": "Fiji Water",
+    "category": "base-ingredient",
+    "description": "Exotic wetness",
+    "cost": 120
+  }
 ]
