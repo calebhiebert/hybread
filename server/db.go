@@ -25,12 +25,10 @@ func initializeDatabase() error {
 // Drop all database tables and print the result
 func dropDatabase() error {
 	schema := GetDropSchema()
-
 	res, err := sess.Exec(schema)
 	if err != nil {
 		return err
 	}
-
 	fmt.Printf("SCHEMA %+v\n", res)
 
 	return nil
