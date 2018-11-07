@@ -3,7 +3,7 @@
 
 	This file conatins the implimentations for the milk items
 
-	Available Flour Types:
+	Available Milk Types:
 	- Cow's Milk
 	- Goat's Milk
 	- Basically Cheese
@@ -36,7 +36,7 @@ func (w Milk) pan(bread *Bread) *Bread {
 }
 
 func (w Milk) bake(minute int, bread *Bread) *Bread {
-	switch w.FlourType {
+	switch w.MilkType {
 	case "Cow's Milk":
 
 	case "Goat's Milk":
