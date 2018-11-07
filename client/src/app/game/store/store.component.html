@@ -1,10 +1,13 @@
-<!-- <div class="container"> -->
 <div class="flex">
-  <div class="w-1/4"><app-store-sidebar (search)="onSearchChange($event)"></app-store-sidebar></div>
-  <div class="store-container">
-    <div class="w-full items-container" *ngIf="items">
-      <app-store-item *ngFor="let item of searchItems" [item]="item"></app-store-item>
+  <div class="w-48"><app-store-sidebar (search)="onSearchChange($event)"></app-store-sidebar></div>
+  <div class="flex flex-col">
+    <div class="store-container items-container pl-2 pt-2" *ngIf="items">
+      <app-store-item
+        *ngFor="let item of searchItems"
+        [item]="item"
+        (carted)="onItemAddedToCart($event)"
+      ></app-store-item>
     </div>
+    <div class="footer"><app-cart [cart]="cart"></app-cart></div>
   </div>
 </div>
-<!-- </div> -->

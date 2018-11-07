@@ -1,0 +1,44 @@
+[
+  {
+    "name": "That Good Good Yeast",
+    "category": "base-ingredient",
+    "description": "Good yeast for good people",
+    "cost": 0
+  },
+  {
+    "name": "That Bad Bad Yeast",
+    "category": "base-ingredient",
+    "description": "Bad yeast for bad people",
+    "cost": 0
+  },
+  {
+    "name": "Quick Rise Yeast",
+    "category": "base-ingredient",
+    "description": "Fastest yeast in the west",
+    "cost": 0
+  },
+  {
+    "name": "Slow Rise Yeast",
+    "category": "base-ingredient",
+    "description": "Good things come to those who wait...",
+    "cost": 0
+  },
+  {
+    "name": "Instant Yeast",
+    "category": "base-ingredient",
+    "description": "Not from a night at the club",
+    "cost": 0
+  },
+  {
+    "name": "Artisanal Yeast",
+    "category": "base-ingredient",
+    "description": "Yeast from a hipster farm",
+    "cost": 0
+  },
+  {
+    "name": "Low Rise Yeast",
+    "category": "base-ingredient",
+    "description": "Yeast for dropping it real low.",
+    "cost": 0
+  }
+]

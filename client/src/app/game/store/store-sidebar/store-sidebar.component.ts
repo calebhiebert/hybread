@@ -16,7 +16,6 @@ export class StoreSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.searchControl.valueChanges.subscribe((value) => {
-      console.log(value);
       this.search.emit(value);
     });
   }

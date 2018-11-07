@@ -11,15 +11,20 @@
   height: 17rem;
   width: 16rem;
   padding: 1rem;
-  margin: 0.5rem;
+  margin: 0.75rem;
   flex-grow: 1;
   flex-basis: 16%;
   overflow: hidden;
   cursor: pointer;
   border-radius: 0.25rem;
-
+  display: flex;
   background-color: rgba(0, 0, 0, 0.589);
   transition: transform 0.23s, opacity 0.35s;
+}
+
+.back {
+  display: flex;
+  flex-direction: column;
 }
 
 .back,
@@ -29,18 +34,21 @@
 
 .store-item-container > .back {
   height: 0;
+  width: 0;
   opacity: 0;
   overflow: hidden;
 }
 
 .store-item-container:hover > .front {
   height: 0;
+  width: 0;
   opacity: 0;
   overflow: hidden;
 }
 
 .store-item-container:hover > .back {
   height: auto;
+  width: 100%;
   opacity: 1;
 }
 
