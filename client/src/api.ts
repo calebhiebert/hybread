@@ -49,7 +49,9 @@ export class HybreadAPI {
    * Checks if a given username is in use or not already
    * @param username string
    */
-  public checkUsernameAvailability(username: string): Promise<IUsernameAvailability> {
+  public checkUsernameAvailability(
+    username: string
+  ): Promise<IUsernameAvailability> {
     return this._http
       .get('/username-available', {
         params: {
@@ -146,9 +148,10 @@ interface ILoginResponse {
   token: string;
 }
 
-interface IUser {
+export interface IUser {
   id: number;
   username: string;
+  currency: number;
 }
 
 interface IUsernameAvailability {
@@ -156,7 +159,7 @@ interface IUsernameAvailability {
   available: boolean;
 }
 
-interface IAuthenticationStatus {
+export interface IAuthenticationStatus {
   authenticated: boolean;
   user?: IUser;
 }
@@ -168,7 +171,12 @@ interface IItemsResponse {
   items: IITem[];
 }
 
-type ItemCategory = 'tool' | 'heat-source' | 'cooking-surface' | 'base-ingredient' | 'extra-ingredient';
+type ItemCategory =
+  | 'tool'
+  | 'heat-source'
+  | 'cooking-surface'
+  | 'base-ingredient'
+  | 'extra-ingredient';
 
 export interface IITem {
   id: number;

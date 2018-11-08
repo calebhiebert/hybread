@@ -15,11 +15,17 @@
   flex-grow: 1;
   flex-basis: 16%;
   overflow: hidden;
-  cursor: pointer;
   border-radius: 0.25rem;
   display: flex;
   background-color: rgba(0, 0, 0, 0.589);
   transition: transform 0.23s, opacity 0.35s;
+}
+
+.store-item-container.disabled,
+.store-item-container.disabled:hover {
+  filter: grayscale(100%);
+  transform: scale(1, 1);
+  cursor: auto;
 }
 
 .back {

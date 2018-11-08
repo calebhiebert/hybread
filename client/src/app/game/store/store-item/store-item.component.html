@@ -1,4 +1,4 @@
-<div class="store-item-container">
+<div class="store-item-container" [ngClass]="{disabled: disabled}">
   <div class="w-full h-full front">
     <div class="spicy text-center text-2xl text-white select-none">{{ item.name }}</div>
     <div class="image-container" [style.background-image]="backgroundImageCSS"></div>
@@ -8,7 +8,7 @@
     <div class="mt-2 text-white select-none">{{ item.description }}</div>
     <div class="flex mt-auto">
       <div class="w-1/2 mt-2 spicy text-2xl text-white select-none">{{ item.cost }}💸</div>
-      <div class="w-1/2 mt-2 flex justify-end">
+      <div class="w-1/2 mt-2 flex justify-end" *ngIf="!disabled">
         <button (click)="onAddToCart()" class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full select-none"
           type="button">
           Cart It 🛒

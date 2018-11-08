@@ -13,6 +13,9 @@ export class StoreItemComponent implements OnInit {
   @Output()
   public carted = new EventEmitter<IITem>();
 
+  @Input()
+  public disabled: boolean;
+
   constructor() {}
 
   ngOnInit() {}
