@@ -1,0 +1,14 @@
+<div class="flex w-full flex-row flex-wrap">
+  <div class="w-full text-white spicy flex cart-item-row justify-between" *ngFor="let item of cart">
+    <div class="list-image" [style.background-image]="getURL(item.item)"></div>
+    <div class="w-1/4">
+      {{ item.item.name }} X {{ item.quantity }}
+    </div>
+    <div class="w-1/2 text-center">
+      ....
+    </div>
+    <div class="w-1/4 text-right">
+      {{ item.item.cost }}
+    </div>
+  </div>
+</div>

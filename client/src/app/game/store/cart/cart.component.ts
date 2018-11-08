@@ -10,9 +10,15 @@ export class CartComponent implements OnInit {
   @Input()
   public cart: { item: IITem; quantity: number }[];
 
+  public expanded = false;
+
   constructor() {}
 
   ngOnInit() {}
+
+  public expandCart() {
+    this.expanded = !this.expanded;
+  }
 
   /**
    * Returns the total currency of items in the cart right now
@@ -22,6 +28,8 @@ export class CartComponent implements OnInit {
       return 0;
     }
 
-    return this.cart.map((c) => c.item.cost * c.quantity).reduce((p, c) => p + c);
+    return this.cart
+      .map((c) => c.item.cost * c.quantity)
+      .reduce((p, c) => p + c);
   }
 }

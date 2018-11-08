@@ -1,4 +1,11 @@
-<div class="cart p-2 flex justify-between">
-  <div class="spicy text-white">A Cart</div>
-  <div class="spicy text-white text-2xl">{{ totalCartPrice }}💸</div>
+<div class="cart p-2 flex flex-wrap justify-between cursor-pointer" [ngClass]="{expanded: expanded}" (click)="expandCart()">
+  <div class="spicy text-white text-2xl">{{ cart.length }} Item{{ cart.length === 1 ? '' :
+    's' }}</div>
+  <div class="spicy text-white text-2xl mb-2">{{ totalCartPrice }}💸</div>
+  <app-cart-list [cart]="cart" class="w-full"></app-cart-list>
+  <div class="m-3 self-end w-full text-center">
+    <button class="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded-full" type="button">
+      Check Out 🛒
+    </button>
+  </div>
 </div>
