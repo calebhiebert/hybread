@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { IITem } from 'src/api';
 
 @Component({
@@ -10,7 +10,10 @@ export class CartComponent implements OnInit {
   @Input()
   public cart: { item: IITem; quantity: number }[];
 
-  public expanded = false;
+  @ViewChild('containerElement')
+  public containerElement: ElementRef;
+
+  private _expanded = false;
 
   constructor() {}
 
@@ -18,6 +21,15 @@ export class CartComponent implements OnInit {
 
   public expandCart() {
     this.expanded = !this.expanded;
+  }
+
+  public get expanded() {
+    return this._expanded;
+  }
+
+  public set expanded(val: boolean) {
+    this._expanded = val;
+    this.containerElement.nativeElement.scrollTop = 0;
   }
 
   /**
