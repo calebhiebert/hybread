@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HybreadAPI, IITem } from 'src/api';
+import { HybreadAPI, IITem, IUser } from 'src/api';
 
 @Component({
   selector: 'app-store',
@@ -11,6 +11,8 @@ export class StoreComponent implements OnInit {
   public items: IITem[];
 
   public cart: { item: IITem; quantity: number }[] = [];
+
+  public user: IUser;
 
   public searchTerm = '';
 
@@ -25,6 +27,9 @@ export class StoreComponent implements OnInit {
       const itemResponse = await this.api.getItems();
       this.items = itemResponse.items;
       console.log(this.items);
+
+      const authResponse = await this.api.checkAuthenticationStatus();
+      this.user = authResponse.user;
     } catch (err) {}
   }
 
@@ -45,6 +50,24 @@ export class StoreComponent implements OnInit {
             i.name.toLowerCase().indexOf(this.searchTerm) !== -1 ||
             i.description.toLowerCase().indexOf(this.searchTerm) !== -1
         );
+    }
+  }
+
+  public get cartCost(): number {
+    if (!this.items || !this.cart || this.cart.length === 0) {
+      return 0;
+    } else {
+      return this.cart
+        .map((c) => c.item.cost * c.quantity)
+        .reduce((p, c) => p + c);
+    }
+  }
+
+  public get currencyRemaining(): number {
+    if (!this.user) {
+      return 0;
+    } else {
+      return this.user.currency - this.cartCost;
     }
   }
 
