@@ -107,6 +107,17 @@ export class HybreadAPI {
   }
 
   /**
+   * Purchases items in bulk
+   * Removes funds from user's account
+   */
+  public bulkPurchase(order: { [key: number]: number }) {
+    return this._http
+      .post('/bpurchase', order)
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */

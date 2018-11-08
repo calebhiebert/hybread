@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { IITem } from 'src/api';
 
 @Component({
@@ -9,6 +17,12 @@ import { IITem } from 'src/api';
 export class CartComponent implements OnInit {
   @Input()
   public cart: { item: IITem; quantity: number }[];
+
+  @Output()
+  public removeItem = new EventEmitter<IITem>();
+
+  @Output()
+  public checkout = new EventEmitter();
 
   @ViewChild('containerElement')
   public containerElement: ElementRef;

@@ -7,7 +7,7 @@
       <app-store-item *ngFor="let item of searchItems" [item]="item" (carted)="onItemAddedToCart($event)" [disabled]="item.cost > currencyRemaining"></app-store-item>
     </div>
     <div class="footer">
-      <app-cart [cart]="cart"></app-cart>
+      <app-cart [cart]="cart" (removeItem)="onRemoveItem($event)" (checkout)="onCheckout()"></app-cart>
     </div>
   </div>
 </div>
