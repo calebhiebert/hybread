@@ -4,6 +4,7 @@ import * as Phaser from 'phaser';
 import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
+import { MessageService, IMessage } from 'src/app/message.service';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
 
 @Component({
@@ -15,6 +16,8 @@ export class GameComponent implements AfterViewInit {
   private ASPECT = 16.0 / 9.0;
   private WIDTH = 1600;
 
+  public showStore = false;
+
   @ViewChild('gamecontainer')
   private gameContainer: HTMLElement;
 
@@ -24,9 +27,23 @@ export class GameComponent implements AfterViewInit {
   private game: Phaser.Game;
   private resizeTimer: any;
 
-  constructor() {}
+  constructor(private msgSrv: MessageService) {}
 
   ngAfterViewInit() {
+    (window as any).messageBus = this.msgSrv;
+
+    this.msgSrv.msgBus.subscribe((msg: IMessage) => {
+      console.log('MSG', msg);
+      switch (msg.type) {
+        case 'store-open':
+          this.showStore = true;
+          break;
+        case 'store-close':
+          this.showStore = false;
+          break;
+      }
+    });
+
     const config: GameConfig = {
       width: this.WIDTH,
       height: this.WIDTH / this.ASPECT,

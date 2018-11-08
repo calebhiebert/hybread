@@ -8,16 +8,21 @@ import * as Phaser from 'phaser';
 import { HybreadAPI } from 'src/api';
 import { Button } from './ui/button';
 import { ITitleCardConfig } from './MinigameTitleCard.scene';
+import { MessageService } from 'src/app/message.service';
 
 export class MenuScene extends Phaser.Scene {
   private breadLogo: Phaser.GameObjects.Image;
   private logoText: Phaser.GameObjects.Text;
   private api: HybreadAPI;
 
+  private messageService: MessageService;
+
   constructor() {
     super({
       key: 'menu',
     });
+
+    this.messageService = (window as any).messageBus;
 
     this.api = new HybreadAPI(localStorage.getItem('auth-token'));
   }
@@ -50,7 +55,18 @@ export class MenuScene extends Phaser.Scene {
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
 
-    // Create bread hunt button
+    const storeButton = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2,
+      'Store'
+    );
+
+    storeButton.on('click', () => {
+      this.messageService.sendMessage({ type: 'store-open' });
+    });
+
+    // Create button
     const button = new Button(
       this,
       (this.game.config.width as number) / 2,
