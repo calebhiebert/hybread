@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { HybreadAPI } from 'src/api';
 import { ITitleCardConfig } from './MinigameTitleCard.scene';
+import { ImageAssets } from './assets';
 
 export class PreloadScene extends Phaser.Scene {
   private loadingText: Phaser.GameObjects.Text;
@@ -20,7 +21,7 @@ export class PreloadScene extends Phaser.Scene {
       {
         align: 'center',
         fontFamily: 'Spicy Rice',
-      },
+      }
     );
 
     // Set the rendering anchor to the center of the text
@@ -41,9 +42,8 @@ export class PreloadScene extends Phaser.Scene {
     /**
      * START ASSET LOADING
      */
-    this.load.image('bread', '/assets/bread.png');
-    this.load.image('tc-bread-hunt', '/assets/tc/bread-hunt.png');
-    this.load.image('ui-button', '/assets/ui/buttonLong_brown.png');
-    this.load.image('ui-button-pressed', '/assets/ui/buttonLong_brown_pressed.png');
+    for (const asset of ImageAssets.IMAGE_ASSETS) {
+      this.load.image(asset.key, asset.path);
+    }
   }
 }

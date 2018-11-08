@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IITem } from 'src/api';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-store-item',
@@ -16,7 +17,7 @@ export class StoreItemComponent implements OnInit {
   @Input()
   public disabled: boolean;
 
-  constructor() {}
+  constructor(private sanitization: DomSanitizer) {}
 
   ngOnInit() {}
 
@@ -28,6 +29,6 @@ export class StoreItemComponent implements OnInit {
   }
 
   public get backgroundImageCSS() {
-    return `url("assets/items/${this.item.name}.png")`;
+    return `url("assets/items/${encodeURIComponent(this.item.name)}.png")`;
   }
 }

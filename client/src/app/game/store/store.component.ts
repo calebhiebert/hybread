@@ -80,6 +80,38 @@ export class StoreComponent implements OnInit {
   }
 
   /**
+   * Called when the user wants to check out
+   */
+  async onCheckout() {
+    console.log(this.cart);
+
+    const order: { [key: number]: number } = {};
+
+    for (const cartItem of this.cart) {
+      order[cartItem.item.id] = cartItem.quantity;
+    }
+
+    try {
+      const orderResult = await this.api.bulkPurchase(order);
+      const authResult = await this.api.checkAuthenticationStatus();
+
+      this.user = authResult.user;
+
+      this.cart = [];
+    } catch (err) {
+      console.log('Unable to complete purchase', err);
+    }
+  }
+
+  /**
+   * Called when the user clicks to remove an item from their cart
+   * @param item item to remove from the cart
+   */
+  onRemoveItem(item: IITem) {
+    this.cart = this.cart.filter((ci) => ci.item.id !== item.id);
+  }
+
+  /**
    * Called when an item is added to the cart
    * @param item item that was added to cart
    */
