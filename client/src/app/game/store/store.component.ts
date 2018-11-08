@@ -43,7 +43,7 @@ export class StoreComponent implements OnInit {
         .filter(
           (i) =>
             i.name.toLowerCase().indexOf(this.searchTerm) !== -1 ||
-            i.description.toLowerCase().indexOf(this.searchTerm) !== -1,
+            i.description.toLowerCase().indexOf(this.searchTerm) !== -1
         );
     }
   }
@@ -63,6 +63,13 @@ export class StoreComponent implements OnInit {
   onItemAddedToCart(item: IITem) {
     // TODO check if the user has enough money
 
-    this.cart.push({ item, quantity: 1 });
+    // Check if the item exists already in the cart
+    const existingItem = this.cart.find((ci) => ci.item.id === item.id);
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      this.cart.push({ item, quantity: 1 });
+    }
   }
 }

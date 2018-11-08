@@ -1,0 +1,12 @@
+.list-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  background-position: center;
+  width: 4rem;
+  height: 100%;
+}
+
+.cart-item-row {
+  min-height: 2rem;
+}

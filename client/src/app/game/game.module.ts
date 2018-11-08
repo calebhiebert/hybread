@@ -6,9 +6,10 @@ import { StoreItemComponent } from './store/store-item/store-item.component';
 import { StoreSidebarComponent } from './store/store-sidebar/store-sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './store/cart/cart.component';
+import { CartListComponent } from './store/cart-list/cart-list.component';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
-  declarations: [GameComponent, StoreComponent, StoreItemComponent, StoreSidebarComponent, CartComponent],
+  declarations: [GameComponent, StoreComponent, StoreItemComponent, StoreSidebarComponent, CartComponent, CartListComponent],
 })
 export class GameModule {}
