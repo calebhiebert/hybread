@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.0.0",
   "scripts": {
+    "start": "ng serve",
     "ng": "ng",
     "dev": "ng serve",
     "build": "ng build --prod --base-href https://hybread.io --no-progress",
