@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MessageService } from 'src/app/message.service';
 
 @Component({
   selector: 'app-store-sidebar',
@@ -12,11 +13,15 @@ export class StoreSidebarComponent implements OnInit {
 
   public searchControl = new FormControl();
 
-  constructor() {}
+  constructor(private msgSrv: MessageService) {}
 
   ngOnInit() {
     this.searchControl.valueChanges.subscribe((value) => {
       this.search.emit(value);
     });
+  }
+
+  public closeStore() {
+    this.msgSrv.sendMessage({ type: 'store-close' });
   }
 }
