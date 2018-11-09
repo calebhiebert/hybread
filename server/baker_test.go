@@ -6,18 +6,16 @@ import (
 	"github.com/calebhiebert/hybread/server/baker"
 )
 
-func TestBaking(t *testing.T) {
-	bread := baker.Bread{
-		MixSeconds:   10,
-		RiseMinutes:  5,
-		KneadSeconds: 5,
-		BakeMinutes:  60,
-		Items:        []baker.BreadAffector{baker.Water{WaterType: "Fiji Water", Amount: 3}},
+func TestAffector(t *testing.T) {
+	affector := baker.GetAffectorByName("Fish Eggs", 1)
+
+	if affector == nil {
+		t.Error("Expected affector, but got nil")
 	}
 
-	baker.Bake(&bread)
+	affector = baker.GetAffectorByName("Water", 23)
 
-	if bread.Tastiness != 6005 {
-		t.Error("Expected 6005, got", bread.Tastiness)
+	if affector == nil {
+		t.Error("Expected affector, but got nil")
 	}
 }
