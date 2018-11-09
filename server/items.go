@@ -152,13 +152,22 @@ func GetInventory(c *gin.Context) {
 	// Cast the user to the actual user type
 	user := currentUser.(User)
 
-	var userItems []InventoryItem
-
-	err := sess.Select("i.id as item_id", "ui.count as count", "i.name as name", "i.category as category", "i.description as description", "i.cost as cost").From("user_items ui").Join("items i").On("i.id = ui.item_id").Where("user_id = ?", user.ID).All(&userItems)
+	userItems, err := GetUserInventory(user.ID)
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Error while loading user items", "ctx": err})
 		return
 	}
 
 	c.JSON(200, userItems)
+}
+
+func GetUserInventory(id int64) ([]InventoryItem, error) {
+	var userItems []InventoryItem
+
+	err := sess.Select("i.id as item_id", "ui.count as count", "i.name as name", "i.category as category", "i.description as description", "i.cost as cost").From("user_items ui").Join("items i").On("i.id = ui.item_id").Where("user_id = ?", id).All(&userItems)
+	if err != nil {
+		return nil, err
+	}
+
+	return userItems, nil
 }

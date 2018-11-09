@@ -48,7 +48,7 @@ func (w Egg) knead(second int, bread *Bread) *Bread {
 	return bread
 }
 
-func (w Egg) pan(second int, bread *Bread) *Bread {
+func (w Egg) pan(bread *Bread) *Bread {
 	return bread
 }
 

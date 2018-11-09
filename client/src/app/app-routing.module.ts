@@ -25,11 +25,6 @@ const routes: Routes = [
     component: GameComponent,
     canActivate: [AuthGuard],
   },
-  {
-    path: 'store',
-    component: StoreComponent,
-    canActivate: [AuthGuard],
-  },
 ];
 
 @NgModule({
