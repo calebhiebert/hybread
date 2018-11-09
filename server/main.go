@@ -93,6 +93,7 @@ func main() {
 	v1Auth.GET("/inventory", GetInventory)
 	v1Auth.POST("/purchase", PurchaseItem)
 	v1Auth.POST("/bpurchase", PurchaseBulkItems)
+	v1Auth.POST("/bake", BakeBread)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "The requested route was not found on this server"})
