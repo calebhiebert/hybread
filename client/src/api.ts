@@ -49,7 +49,9 @@ export class HybreadAPI {
    * Checks if a given username is in use or not already
    * @param username string
    */
-  public checkUsernameAvailability(username: string): Promise<IUsernameAvailability> {
+  public checkUsernameAvailability(
+    username: string
+  ): Promise<IUsernameAvailability> {
     return this._http
       .get('/username-available', {
         params: {
@@ -105,6 +107,17 @@ export class HybreadAPI {
   }
 
   /**
+   * Purchases items in bulk
+   * Removes funds from user's account
+   */
+  public bulkPurchase(order: { [key: number]: number }) {
+    return this._http
+      .post('/bpurchase', order)
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */
@@ -139,9 +152,10 @@ interface ILoginResponse {
   token: string;
 }
 
-interface IUser {
+export interface IUser {
   id: number;
   username: string;
+  currency: number;
 }
 
 interface IUsernameAvailability {
@@ -149,7 +163,7 @@ interface IUsernameAvailability {
   available: boolean;
 }
 
-interface IAuthenticationStatus {
+export interface IAuthenticationStatus {
   authenticated: boolean;
   user?: IUser;
 }
@@ -161,7 +175,12 @@ interface IItemsResponse {
   items: IITem[];
 }
 
-type ItemCategory = 'tool' | 'heat-source' | 'cooking-surface' | 'base-ingredient' | 'extra-ingredient';
+type ItemCategory =
+  | 'tool'
+  | 'heat-source'
+  | 'cooking-surface'
+  | 'base-ingredient'
+  | 'extra-ingredient';
 
 export interface IITem {
   id: number;

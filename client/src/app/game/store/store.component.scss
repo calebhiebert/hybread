@@ -1,0 +1,24 @@
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.flex {
+  height: 100%;
+  width: 100%;
+}
+
+.store-container {
+  background-image: url('/assets/shop-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  image-rendering: pixelated;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+:host {
+  height: 100%;
+}

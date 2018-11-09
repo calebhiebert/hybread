@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Cow's Milk",
+    "category": "base-ingredient",
+    "description": "Milk from a cow.",
+    "cost": 0
+  },
+  {
+    "name": "Goat's Milk",
+    "category": "base-ingredient",
+    "description": "Milk from a goat",
+    "cost": 0
+  },
+  {
+    "name": "Basically Cheese",
+    "category": "base-ingredient",
+    "description": "Really old milk",
+    "cost": 0
+  },
+  {
+    "name": "Demon's Milk",
+    "category": "base-ingredient",
+    "description": "... Which demon?",
+    "cost": 0
+  },
+  {
+    "name": "Milk of Magnesia",
+    "category": "base-ingredient",
+    "description": "Milk with magnesium",
+    "cost": 0
+  },
+  {
+    "name": "Dragon's Milk",
+    "category": "base-ingredient",
+    "description": "... You can milk a dragon?",
+    "cost": 0
+  },
+  {
+    "name": "Mystery Milk",
+    "category": "base-ingredient",
+    "description": "... You can milk a mystery?",
+    "cost": 0
+  }
+]

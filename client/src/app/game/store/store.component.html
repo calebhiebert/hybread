@@ -1,10 +1,13 @@
-<div class="container">
-  <div class="flex">
-    <div class="w-1/4">
-      <app-store-sidebar></app-store-sidebar>
+<div class="flex">
+  <div class="w-48">
+    <app-store-sidebar (search)="onSearchChange($event)" [user]="user" [cart]="cart"></app-store-sidebar>
+  </div>
+  <div class="flex flex-col">
+    <div class="store-container items-container pl-2 pt-2" *ngIf="items">
+      <app-store-item *ngFor="let item of searchItems" [item]="item" (carted)="onItemAddedToCart($event)" [disabled]="item.cost > currencyRemaining"></app-store-item>
     </div>
-    <div class="w-full" *ngIf="items">
-      <app-store-item *ngFor="let item of items" [item]="item"></app-store-item>
+    <div class="footer">
+      <app-cart [cart]="cart" (removeItem)="onRemoveItem($event)" (checkout)="onCheckout()"></app-cart>
     </div>
   </div>
 </div>

@@ -1,0 +1,13 @@
+<div class="cart p-2 flex flex-wrap justify-between" [ngClass]="{expanded: expanded}" #containerElement>
+  <div class="spicy text-white text-2xl select-none">{{ cart.length }} Item{{ cart.length === 1 ? '' :
+    's' }}</div>
+  <div class="text-white spicy cursor-pointer text-xl" (click)="expandCart()">{{ expanded ? '⬇️' : '⬆️'}}</div>
+  <div class="spicy text-white text-2xl mb-2 select-none">{{ totalCartPrice }}💸</div>
+  <app-cart-list [cart]="cart" class="w-full" (removeItem)="removeItem.emit($event)"></app-cart-list>
+  <div class="m-3 self-end w-full text-center">
+    <button class="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded-full select-none" type="button"
+      (click)="checkout.emit()">
+      Check Out 🛒
+    </button>
+  </div>
+</div>

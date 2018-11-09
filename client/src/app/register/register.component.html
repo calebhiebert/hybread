@@ -1,15 +1,36 @@
-<div class="container mx-auto mt-3">
-  <div class="row">
-    <form (ngSubmit)="submit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8">
-      <div>
-        <label for="username" class="block text-grey-darker text-sm font-bold mb-2">Username</label>
-        <input id="username" name="username" type="text" placeholder="Username" [formControl]="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight">
-      </div>
-      <div class="mt-2">
-        <label for="password" class="block text-grey-darker text-sm font-bold mb-2">Password</label>
-        <input id="password" name="password" type="password" placeholder="****" [formControl]="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight">
-      </div>
-      <button class="shadow bg-purple hover:bg-purple-light focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-2 mr-2">Register</button>
-    </form>
+<div class="bg">
+  <div class="container mx-auto">
+    <div class="row">
+      <form (ngSubmit)="submit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+        <h1 class="spicy text-center font">Register</h1>
+        <fieldset>
+          <label for="username" class="block text-grey-darker text-sm font-bold mb-2">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+            [formControl]="username"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
+          />
+        </fieldset>
+        <fieldset class="mt-2">
+          <label for="password" class="block text-grey-darker text-sm font-bold mb-2">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="****"
+            [formControl]="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight"
+          />
+        </fieldset>
+        <button
+          class="shadow bg-orange hover:bg-orange-light focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-2"
+        >
+          Register
+        </button>
+      </form>
+    </div>
   </div>
 </div>

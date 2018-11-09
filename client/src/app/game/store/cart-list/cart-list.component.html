@@ -1,0 +1,15 @@
+<div class="flex w-full flex-row flex-wrap">
+  <div class="w-full text-white spicy flex cart-item-row justify-between" *ngFor="let item of cart">
+    <div class="list-image select-none" [style.background-image]="getURL(item.item)"></div>
+    <div class="w-1/4 select-none">
+      <a (click)="removeCartItem(item.item)" class="text-3xl text-red-light mr-2">X</a> {{ item.item.name }} X {{
+      item.quantity }}
+    </div>
+    <div class="w-1/2 text-center select-none">
+      ....
+    </div>
+    <div class="w-1/4 text-right select-none">
+      {{ item.item.cost }}
+    </div>
+  </div>
+</div>

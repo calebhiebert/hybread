@@ -1,0 +1,12 @@
+.cart {
+  background-color: #482e1a;
+  transition: max-height 0.3s;
+  max-height: 2.5rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.cart.expanded {
+  max-height: 50vh;
+  overflow-y: scroll;
+}

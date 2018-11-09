@@ -1,0 +1,9 @@
+.bg {
+  background-image: url('/assets/entrance.png') !important;
+  background-size: cover !important;
+  image-rendering: pixelated;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
