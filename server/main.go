@@ -92,6 +92,7 @@ func main() {
 	v1Auth.GET("/items", GetItems)
 	v1Auth.GET("/inventory", GetInventory)
 	v1Auth.POST("/purchase", PurchaseItem)
+	v1Auth.POST("/bake", BakeBread)
 	v1Auth.POST("/bpurchase", PurchaseBulkItems)
 
 	r.NoRoute(func(c *gin.Context) {
