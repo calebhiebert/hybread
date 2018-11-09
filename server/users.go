@@ -136,15 +136,20 @@ func CheckAuthentication(c *gin.Context) {
 
 //Logout the user
 func Logout(c *gin.Context) {
+	//Get the user object from gin
 	currentUser, _ := c.Get("user")
 
+	//Parses the user context
 	user := currentUser.(User)
 
-	err = rds.Del(fmt.Sprintf("id:%d", user.ID)).Err()
-	if err != nil {
-		c.JSON(500, gin.H{"error": "Error while deleting id-token", "ctx": err})
-		return
-	}
+	//Gets the token from context
+	token := c.GetString("token")
+
+	//Deleted the user id from redis
+	rds.Del(fmt.Sprintf("id:%d", user.ID))
+
+	//Deletes the auth id from redis
+	rds.Del(fmt.Sprintf("auth:%d", token))
 }
 
 // Login the handler for obtaining a Bearer token to access the rest of the API
