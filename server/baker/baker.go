@@ -5,6 +5,10 @@
 */
 package baker
 
+import (
+	"fmt"
+)
+
 // Bake will bake the bread
 func Bake(bread *Bread) (*Bread, error) {
 
@@ -46,51 +50,53 @@ func Bake(bread *Bread) (*Bread, error) {
 
 // GetAffectorByName returns a BreadAffector object that is pre-filled based on the item name
 func GetAffectorByName(name string, count int) BreadAffector {
+	fmt.Println("GOT NAME", name, len(name))
+
 	switch name {
-	case "Water":
-	case "Fiji Water":
-	case "Glacier Water":
-	case "Mystery Water":
-	case "Wator":
-	case "Dirty Water":
-	case "Child's Tears":
-	case "Fountain of Youth Water":
-	case "Angel's Tears":
+	case "Water",
+		"Fiji Water",
+		"Glacier Water",
+		"Mystery Water",
+		"Wator",
+		"Dirty Water",
+		"Child's Tears",
+		"Fountain of Youth Water",
+		"Angel's Tears":
 		return Water{WaterType: name, Amount: count}
-	case "Eggs":
-	case "Organic Eggs":
-	case "Golden Eggs":
-	case "Dragon's Eggs":
-	case "Fish Eggs":
-	case "Mystery Eggs":
+	case "Eggs",
+		"Organic Eggs",
+		"Golden Eggs",
+		"Dragon's Eggs",
+		"Fish Eggs",
+		"Mystery Eggs":
 		return Egg{EggType: name, Amount: count}
-	case "Wheat Flour":
-	case "Oat Flour":
-	case "Bone Flour":
-	case "Mystery Flour":
+	case "Wheat Flour",
+		"Oat Flour",
+		"Bone Flour",
+		"Mystery Flour":
 		return Flour{FlourType: name, Amount: count}
-	case "Cow's Milk":
-	case "Goat's Milk":
-	case "Basically Cheese":
-	case "Demon's Milk":
-	case "Milk of Magnesia":
-	case "Dragon's Milk":
+	case "Cow's Milk",
+		"Goat's Milk",
+		"Basically Cheese",
+		"Demon's Milk",
+		"Milk of Magnesia",
+		"Dragon's Milk":
 		return Milk{MilkType: name, Amount: count}
-	case "Butter":
-	case "Grass-Fed Butter":
-	case "Vegetable Oil":
-	case "Pixie Oil":
-	case "Mystery Grease":
-	case "Engine Grease":
-	case "Olive Oil":
+	case "Butter",
+		"Grass-Fed Butter",
+		"Vegetable Oil",
+		"Pixie Oil",
+		"Mystery Grease",
+		"Engine Grease",
+		"Olive Oil":
 		return Oil{OilType: name, Amount: count}
-	case "That Good Good Yeast":
-	case "That Bad Bad Yeast":
-	case "Quick Rise Yeast":
-	case "Slow Rise Yeast":
-	case "Instant Yeast":
-	case "Artisanal Yeast":
-	case "Low Rise Yeast":
+	case "That Good Good Yeast",
+		"That Bad Bad Yeast",
+		"Quick Rise Yeast",
+		"Slow Rise Yeast",
+		"Instant Yeast",
+		"Artisanal Yeast",
+		"Low Rise Yeast":
 		return Yeast{YeastType: name, Amount: count}
 	}
 

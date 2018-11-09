@@ -8,6 +8,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/calebhiebert/hybread/server/baker"
 	"github.com/gin-gonic/gin"
@@ -147,6 +148,27 @@ func CreateBread(input *BakeInput, ingredients *map[Item]int, tools *[]Item) *ba
 		RiseMinutes:  input.RiseMinutes,
 		KneadSeconds: input.KneadSeconds,
 		BakeMinutes:  input.BakeMinutes,
+	}
+
+	bread.Descriptors = make([]string, 0)
+	bread.Items = make([]baker.BreadAffector, 0)
+
+	for item, quantity := range *ingredients {
+		affector := baker.GetAffectorByName(item.Name, quantity)
+		if affector == nil {
+			fmt.Println("Nil Affector", item.Name, len(item.Name))
+		}
+
+		bread.Items = append(bread.Items, affector)
+	}
+
+	for _, tool := range *tools {
+		affector := baker.GetAffectorByName(tool.Name, 0)
+		if affector == nil {
+			fmt.Println("Nil Tool Affector", tool)
+		}
+
+		bread.Items = append(bread.Items, affector)
 	}
 
 	return &bread

@@ -7,12 +7,27 @@ package baker
 
 // Bread struct will contain all possible properties of bread
 type Bread struct {
-	Tastiness    float64
 	MixSeconds   int
 	RiseMinutes  int
 	KneadSeconds int
 	BakeMinutes  int
 	Items        []BreadAffector
+	Descriptors  []string
+	Properties   []Property
+	Attributes   BreadAttributes
+}
+
+type BreadAttributes struct {
+	MouthFeel   float64
+	Fluffiness  float64
+	Crunchiness float64
+	Cookedness  float64
+	Flavor      float64
+}
+
+type Property struct {
+	score      float64
+	descriptor string
 }
 
 // All items, ovens, etc... should impliment this interface

@@ -70,7 +70,6 @@ func GetItems(c *gin.Context) {
 func PurchaseItem(c *gin.Context) {
 
 	currentUser, _ := c.Get("user")
-
 	user := currentUser.(User)
 
 	var input PurchaseItemsInput
