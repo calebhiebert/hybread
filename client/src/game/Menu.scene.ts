@@ -55,6 +55,7 @@ export class MenuScene extends Phaser.Scene {
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
 
+    // Create bread hunt button
     const storeButton = new Button(
       this,
       (this.game.config.width as number) / 2,
