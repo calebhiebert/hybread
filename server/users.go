@@ -134,6 +134,19 @@ func CheckAuthentication(c *gin.Context) {
 	}
 }
 
+//Logout the user
+func Logout(c *gin.Context) {
+	currentUser, _ := c.Get("user")
+
+	user := currentUser.(User)
+
+	err = rds.Del(fmt.Sprintf("id:%d", user.ID)).Err()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Error while deleting id-token", "ctx": err})
+		return
+	}
+}
+
 // Login the handler for obtaining a Bearer token to access the rest of the API
 func Login(c *gin.Context) {
 	var login LoginArgs

@@ -84,6 +84,7 @@ func main() {
 	// User related routes, full path ends up being <server>/api/v1/users
 	v1.POST("/users", CreateUser)
 	v1.POST("/login", Login)
+	v1.POST("/logout", Logout)
 	v1.GET("/username-available", UsernameAvailable)
 	v1.GET("/check-authentication", CheckAuthentication)
 
