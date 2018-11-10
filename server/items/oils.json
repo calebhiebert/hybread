@@ -1,50 +1,50 @@
 [
-  {
-    "name": "Butter",
-    "category": "base-ingredient",
-    "description": "Butter made from cow's milk",
-    "cost": 0
-  },
-  {
-    "name": "Grass-Fed Butter",
-    "category": "base-ingredient",
-    "description": "Butter made from grass-fed cow's milk",
-    "cost": 0
-  },
-  {
-    "name": "Vegetable Oil",
-    "category": "base-ingredient",
-    "description": "Oil made from vegetables",
-    "cost": 0
-  },
-  {
-    "name": "Pixie Oil",
-    "category": "base-ingredient",
-    "description": "Don't ask",
-    "cost": 0
-  },
-  {
-    "name": "Mystery Grease",
-    "category": "base-ingredient",
-    "description": "These mysteries are greasy bro.",
-    "cost": 0
-  },
-  {
-    "name": "Engine Grease",
-    "category": "base-ingredient",
-    "description": "Grease for engines (or bread apparently)",
-    "cost": 0
-  },
-  {
-    "name": "Olive Oil",
-    "category": "base-ingredient",
-    "description": "Oil from olives",
-    "cost": 0
-  },
-  {
-    "name": "Bacon Grease",
-    "category": "base-ingredient",
-    "description": "Grease from bacons",
-    "cost": 0
-  }
+	{
+		"name": "Butter",
+		"category": "base-ingredient",
+		"description": "Butter made from cow's milk",
+		"cost": 2
+	},
+	{
+		"name": "Grass-Fed Butter",
+		"category": "base-ingredient",
+		"description": "Butter made from grass-fed cow's milk",
+		"cost": 5
+	},
+	{
+		"name": "Vegetable Oil",
+		"category": "base-ingredient",
+		"description": "Oil made from vegetables",
+		"cost": 0
+	},
+	{
+		"name": "Pixie Oil",
+		"category": "base-ingredient",
+		"description": "Don't ask",
+		"cost": 20
+	},
+	{
+		"name": "Mystery Grease",
+		"category": "base-ingredient",
+		"description": "These mysteries are greasy bro.",
+		"cost": 5
+	},
+	{
+		"name": "Engine Grease",
+		"category": "base-ingredient",
+		"description": "Grease for engines (or bread apparently)",
+		"cost": 2
+	},
+	{
+		"name": "Olive Oil",
+		"category": "base-ingredient",
+		"description": "Oil from olives",
+		"cost": 10
+	},
+	{
+		"name": "Bacon Grease",
+		"category": "base-ingredient",
+		"description": "Grease from bacons",
+		"cost": 6
+	}
 ]

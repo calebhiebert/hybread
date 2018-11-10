@@ -1,116 +1,116 @@
 [
-  {
-    "name": "Sugar",
-    "category": "base-ingredient",
-    "description": "Sweet flavor bro",
-    "cost": 0
-  },
-  {
-    "name": "Salt",
-    "category": "base-ingredient",
-    "description": "Straight from the League of Legends",
-    "cost": 0
-  },
-  {
-    "name": "Garlic",
-    "category": "base-ingredient",
-    "description": "Not for vampires",
-    "cost": 0
-  },
-  {
-    "name": "Everything Nice",
-    "category": "base-ingredient",
-    "description": "Now for bread making.",
-    "cost": 0
-  },
-  {
-    "name": "Onions",
-    "category": "base-ingredient",
-    "description": "Layers of flavor.",
-    "cost": 0
-  },
-  {
-    "name": "Rainbows",
-    "category": "base-ingredient",
-    "description": "There do be gold",
-    "cost": 0
-  },
-  {
-    "name": "Powdered Sasquatch Hairs",
-    "category": "base-ingredient",
-    "description": "Sticks in your teeth. (Supposedly)",
-    "cost": 0
-  },
-  {
-    "name": "Snails",
-    "category": "base-ingredient",
-    "description": "Easy to catch",
-    "cost": 0
-  },
-  {
-    "name": "Dark Magic",
-    "category": "base-ingredient",
-    "description": "Hey Sabrina, can you come here for a minute...",
-    "cost": 0
-  },
-  {
-    "name": "A Hearty Pat",
-    "category": "base-ingredient",
-    "description": "\"What a good bread you are!\"",
-    "cost": 0
-  },
-  {
-    "name": "White Magic",
-    "category": "base-ingredient",
-    "description": "Cura!",
-    "cost": 0
-  },
-  {
-    "name": "A Voodoo Curse",
-    "category": "base-ingredient",
-    "description": "Make a bread doll from its crumbs",
-    "cost": 0
-  },
-  {
-    "name": "Cyanide",
-    "category": "base-ingredient",
-    "description": "Not too much!",
-    "cost": 0
-  },
-  {
-    "name": "Raisins",
-    "category": "base-ingredient",
-    "description": "Pretty sweet",
-    "cost": 0
-  },
-  {
-    "name": "Apples",
-    "category": "base-ingredient",
-    "description": "No doctors here",
-    "cost": 0
-  },
-  {
-    "name": "Cinnamon",
-    "category": "base-ingredient",
-    "description": "Yep",
-    "cost": 0
-  },
-  {
-    "name": "A Lovely Song",
-    "category": "base-ingredient",
-    "description": "\"Twinkle twinkle little bread...\"",
-    "cost": 0
-  },
-  {
-    "name": "A Four Leaf Clover",
-    "category": "base-ingredient",
-    "description": "Lucky you.",
-    "cost": 0
-  },
-  {
-    "name": "Your First Born Child",
-    "category": "base-ingredient",
-    "description": "For a loaf of bread!?!?!",
-    "cost": 0
-  }
+	{
+		"name": "Sugar",
+		"category": "base-ingredient",
+		"description": "Sweet flavor bro",
+		"cost": 1
+	},
+	{
+		"name": "Salt",
+		"category": "base-ingredient",
+		"description": "Straight from the League of Legends",
+		"cost": 5
+	},
+	{
+		"name": "Garlic",
+		"category": "base-ingredient",
+		"description": "Not for vampires",
+		"cost": 5
+	},
+	{
+		"name": "Everything Nice",
+		"category": "base-ingredient",
+		"description": "Now for bread making.",
+		"cost": 10
+	},
+	{
+		"name": "Onions",
+		"category": "base-ingredient",
+		"description": "Layers of flavor.",
+		"cost": 5
+	},
+	{
+		"name": "Rainbows",
+		"category": "base-ingredient",
+		"description": "There do be gold",
+		"cost": 20
+	},
+	{
+		"name": "Powdered Sasquatch Hairs",
+		"category": "base-ingredient",
+		"description": "Sticks in your teeth. (Supposedly)",
+		"cost": 16
+	},
+	{
+		"name": "Snails",
+		"category": "base-ingredient",
+		"description": "Easy to catch",
+		"cost": 2
+	},
+	{
+		"name": "Dark Magic",
+		"category": "base-ingredient",
+		"description": "Hey Sabrina, can you come here for a minute...",
+		"cost": 20
+	},
+	{
+		"name": "A Hearty Pat",
+		"category": "base-ingredient",
+		"description": "\"What a good bread you are!\"",
+		"cost": 0
+	},
+	{
+		"name": "White Magic",
+		"category": "base-ingredient",
+		"description": "Cura!",
+		"cost": 6
+	},
+	{
+		"name": "A Voodoo Curse",
+		"category": "base-ingredient",
+		"description": "Make a bread doll from its crumbs",
+		"cost": 15
+	},
+	{
+		"name": "Cyanide",
+		"category": "base-ingredient",
+		"description": "Not too much!",
+		"cost": 4
+	},
+	{
+		"name": "Raisins",
+		"category": "base-ingredient",
+		"description": "Pretty sweet",
+		"cost": 7
+	},
+	{
+		"name": "Apples",
+		"category": "base-ingredient",
+		"description": "No doctors here",
+		"cost": 4
+	},
+	{
+		"name": "Cinnamon",
+		"category": "base-ingredient",
+		"description": "Yep",
+		"cost": 8
+	},
+	{
+		"name": "A Lovely Song",
+		"category": "base-ingredient",
+		"description": "\"Twinkle twinkle little bread...\"",
+		"cost": 1
+	},
+	{
+		"name": "A Four Leaf Clover",
+		"category": "base-ingredient",
+		"description": "Lucky you.",
+		"cost": 8
+	},
+	{
+		"name": "Your First Born Child",
+		"category": "base-ingredient",
+		"description": "For a loaf of bread!?!?!",
+		"cost": 100
+	}
 ]

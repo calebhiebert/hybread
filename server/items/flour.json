@@ -1,26 +1,26 @@
 [
-  {
-    "name": "Wheat Flour",
-    "category": "base-ingredient",
-    "description": "Flour made from wheat.",
-    "cost": 0
-  },
-  {
-    "name": "Oat Flour",
-    "category": "base-ingredient",
-    "description": "Flour made from Oats.",
-    "cost": 0
-  },
-  {
-    "name": "Bone Flour",
-    "category": "base-ingredient",
-    "description": "Flour made from Bones",
-    "cost": 0
-  },
-  {
-    "name": "Mystery Flour",
-    "category": "base-ingredient",
-    "description": "Flour made from Mysteries",
-    "cost": 0
-  }
+	{
+		"name": "Wheat Flour",
+		"category": "base-ingredient",
+		"description": "Flour made from wheat.",
+		"cost": 1
+	},
+	{
+		"name": "Oat Flour",
+		"category": "base-ingredient",
+		"description": "Flour made from Oats.",
+		"cost": 2
+	},
+	{
+		"name": "Bone Flour",
+		"category": "base-ingredient",
+		"description": "Flour made from Bones",
+		"cost": 5
+	},
+	{
+		"name": "Mystery Flour",
+		"category": "base-ingredient",
+		"description": "Flour made from Mysteries",
+		"cost": 6
+	}
 ]
