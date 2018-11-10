@@ -7,6 +7,7 @@ import { MenuScene } from 'src/game/Menu.scene';
 import { MessageService, IMessage } from 'src/app/message.service';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { Router } from '@angular/router';
+import { HybreadAPI } from 'src/api';
 
 @Component({
   selector: 'app-game',
@@ -43,8 +44,7 @@ export class GameComponent implements AfterViewInit {
           this.showStore = false;
           break;
         case 'logout':
-          localStorage.removeItem('auth-token');
-          this.router.navigate(['login']);
+          this.logout();
           break;
       }
     });
@@ -73,6 +73,17 @@ export class GameComponent implements AfterViewInit {
     setTimeout(() => {
       this.resizeGameWindow();
     }, 100);
+  }
+
+  private async logout() {
+    try {
+      const api = new HybreadAPI(localStorage.getItem('auth-token'));
+      await api.logout();
+      localStorage.removeItem('auth-token');
+      this.router.navigate(['login']);
+    } catch (err) {
+      console.log('Logout ERR', err);
+    }
   }
 
   private resizeEventHandler() {
