@@ -89,11 +89,12 @@ func main() {
 	v1.GET("/check-authentication", CheckAuthentication)
 
 	// Authenticated routes
-	v1Auth.GET("/users", GetUsers)
 	v1Auth.GET("/items", GetItems)
 	v1Auth.GET("/inventory", GetInventory)
 	v1Auth.POST("/purchase", PurchaseItem)
 	v1Auth.POST("/bpurchase", PurchaseBulkItems)
+	v1Auth.GET("/leaderboards/richest", RichestPlayer)
+	v1Auth.GET("/leaderboards/best-bread", BestBread)
 	v1Auth.POST("/bake", BakeBread)
 
 	r.NoRoute(func(c *gin.Context) {
