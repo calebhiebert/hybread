@@ -1,13 +1,27 @@
 <div class="flex">
   <div class="w-48">
-    <app-store-sidebar (search)="onSearchChange($event)" [user]="user" [cart]="cart"></app-store-sidebar>
+    <app-store-sidebar
+      (search)="onSearchChange($event)"
+      [user]="user"
+      [cart]="cart"
+    ></app-store-sidebar>
   </div>
   <div class="flex flex-col">
     <div class="store-container items-container pl-2 pt-2" *ngIf="items">
-      <app-store-item *ngFor="let item of searchItems" [item]="item" (carted)="onItemAddedToCart($event)" [disabled]="item.cost > currencyRemaining"></app-store-item>
+      <app-store-item
+        *ngFor="let item of searchItems"
+        [item]="item"
+        (carted)="onItemAddedToCart($event)"
+        [disabled]="item.cost > currencyRemaining"
+        [quantity]="inventoryMap[item.id] ? inventoryMap[item.id].count : 0"
+      ></app-store-item>
     </div>
     <div class="footer">
-      <app-cart [cart]="cart" (removeItem)="onRemoveItem($event)" (checkout)="onCheckout()"></app-cart>
+      <app-cart
+        [cart]="cart"
+        (removeItem)="onRemoveItem($event)"
+        (checkout)="onCheckout()"
+      ></app-cart>
     </div>
   </div>
 </div>

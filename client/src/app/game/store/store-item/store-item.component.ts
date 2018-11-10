@@ -11,6 +11,9 @@ export class StoreItemComponent implements OnInit {
   @Input()
   public item: IITem;
 
+  @Input()
+  public quantity: number;
+
   @Output()
   public carted = new EventEmitter<IITem>();
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HybreadAPI, IITem, IUser } from 'src/api';
+import { HybreadAPI, IITem, IUser, IInventoryItem } from 'src/api';
 
 @Component({
   selector: 'app-store',
@@ -13,6 +13,8 @@ export class StoreComponent implements OnInit {
   public cart: { item: IITem; quantity: number }[] = [];
 
   public user: IUser;
+
+  public inventory: IInventoryItem[];
 
   public searchTerm = '';
 
@@ -30,6 +32,9 @@ export class StoreComponent implements OnInit {
 
       const authResponse = await this.api.checkAuthenticationStatus();
       this.user = authResponse.user;
+
+      const inventory = await this.api.getInventory();
+      this.inventory = inventory;
     } catch (err) {}
   }
 
@@ -94,8 +99,10 @@ export class StoreComponent implements OnInit {
     try {
       const orderResult = await this.api.bulkPurchase(order);
       const authResult = await this.api.checkAuthenticationStatus();
+      const newInventory = await this.api.getInventory();
 
       this.user = authResult.user;
+      this.inventory = newInventory;
 
       this.cart = [];
     } catch (err) {
@@ -126,5 +133,17 @@ export class StoreComponent implements OnInit {
     } else {
       this.cart.push({ item, quantity: 1 });
     }
+  }
+
+  public get inventoryMap(): { [key: number]: IInventoryItem } {
+    const map = {};
+
+    if (this.inventory && this.inventory.length > 0) {
+      for (const invItem of this.inventory) {
+        map[invItem.id] = invItem;
+      }
+    }
+
+    return map;
   }
 }
