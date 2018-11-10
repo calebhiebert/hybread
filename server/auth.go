@@ -21,6 +21,7 @@ func AuthMiddleware() gin.HandlerFunc {
 
 		if header != "" {
 			token := string([]rune(header)[len("Bearer "):])
+			c.Set("token", token)
 
 			// Grab the user id from redis
 			res, err := rds.Get("auth:" + token).Result()

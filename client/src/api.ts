@@ -136,6 +136,13 @@ export class HybreadAPI {
 
     return Promise.reject(err);
   }
+
+  /**
+   * Removes the users token from session
+   */
+  public logout() {
+    localStorage.clear();
+  }
 }
 
 interface IRegisterAccountArgs {

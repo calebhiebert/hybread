@@ -55,6 +55,7 @@ export class MenuScene extends Phaser.Scene {
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
 
+    // Create bread hunt button
     const storeButton = new Button(
       this,
       (this.game.config.width as number) / 2,
@@ -66,7 +67,7 @@ export class MenuScene extends Phaser.Scene {
       this.messageService.sendMessage({ type: 'store-open' });
     });
 
-    // Create button
+    // Create bread hunt button
     const button = new Button(
       this,
       (this.game.config.width as number) / 2,
@@ -85,6 +86,20 @@ export class MenuScene extends Phaser.Scene {
       };
 
       this.scene.start('title-card', titleCardConfig);
+    });
+
+    // Create logout button
+    const logout = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 - 50,
+      'Logout',
+    );
+
+    //Logs the user out of the game
+    logout.on('click', async () => {
+      await this.api.logout();
+      window.location.reload();
     });
   }
 }
