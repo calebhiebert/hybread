@@ -5,8 +5,11 @@ import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
 import { MessageService, IMessage } from 'src/app/message.service';
+import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { Router } from '@angular/router';
 import { HybreadAPI } from 'src/api';
+import { GoodBreadScene } from 'src/game/GoodBread.scene';
+import { BadBreadScene } from 'src/game/BadBread.scene';
 
 @Component({
   selector: 'app-game',
@@ -18,9 +21,6 @@ export class GameComponent implements AfterViewInit {
   private WIDTH = 1600;
 
   public showStore = false;
-
-  @ViewChild('gamecontainer')
-  private gameContainer: HTMLElement;
 
   @ViewChild('gamecanvas')
   private gameCanvas: ElementRef<HTMLCanvasElement>;
@@ -53,7 +53,14 @@ export class GameComponent implements AfterViewInit {
       height: this.WIDTH / this.ASPECT,
       canvas: this.gameCanvas.nativeElement,
       type: Phaser.AUTO,
-      scene: [PreloadScene, MenuScene, MinigameTitleCard, BreadHuntScene],
+      scene: [
+        PreloadScene,
+        MenuScene,
+        MinigameTitleCard,
+        GoodBreadScene,
+        BreadHuntScene,
+        BadBreadScene,
+      ],
     };
 
     this.game = new Phaser.Game(config);

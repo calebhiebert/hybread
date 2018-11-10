@@ -1,6 +1,4 @@
 import * as Phaser from 'phaser';
-import { HybreadAPI } from 'src/api';
-import { ITitleCardConfig } from './MinigameTitleCard.scene';
 import { ImageAssets } from './assets';
 
 export class PreloadScene extends Phaser.Scene {
@@ -36,7 +34,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.on('complete', () => {
       // Destroy the loading text as we do not need it anymore
       this.loadingText.destroy();
-      this.scene.start('menu');
+      this.scene.start('bad-bread');
     });
 
     /**

@@ -46,6 +46,18 @@ export class ImageAssets {
         key: 'ui-button-pressed',
         path: '/assets/ui/buttonLong_brown_pressed.png',
       },
+      {
+        key: 'sunrise',
+        path: '/assets/sunrise.png',
+      },
+      {
+        key: 'fly',
+        path: '/assets/particles/fly.png',
+      },
+      {
+        key: 'swamp',
+        path: '/assets/swamp.png',
+      },
       ...this.ITEM_ASSETS,
     ];
   }
