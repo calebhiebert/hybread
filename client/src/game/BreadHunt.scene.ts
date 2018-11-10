@@ -30,9 +30,7 @@ export class BreadHuntScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.input.setDefaultCursor(
-      'url("assets/crosshair040.png") 36 36, pointer'
-    );
+    this.input.setDefaultCursor('url("assets/crosshair040.png") 36 36, pointer');
 
     this._breadParticles = new BreadParticles(this);
     this._breadEmitter = this._breadParticles.createEmitter({
@@ -46,7 +44,7 @@ export class BreadHuntScene extends Phaser.Scene {
     });
 
     // Back to menu button
-    const menuButton = new Button(this, 30, 30, 'Menu');
+    const menuButton = new Button(this, 110, 35, 'Menu');
     menuButton.on('click', () => {
       this.input.setDefaultCursor('inherit');
       this.scene.start('menu');
@@ -65,14 +63,11 @@ export class BreadHuntScene extends Phaser.Scene {
       // Set the bread's x position somewhere along the screen width
       bread.x = this.getRandomBetween(
         (this.game.config.width as number) * 0.1,
-        (this.game.config.width as number) * 0.9
+        (this.game.config.width as number) * 0.9,
       );
 
       // Apply a randomized force
-      bread.applyForce(
-        this.getRandomBetween(-750, 750),
-        this.getRandomBetween(-1500, -2000)
-      );
+      bread.applyForce(this.getRandomBetween(-750, 750), this.getRandomBetween(-1500, -2000));
     }
   }
 
@@ -128,14 +123,7 @@ export class BreadHuntScene extends Phaser.Scene {
    * @param bread the bread that was hit
    */
   private onBreadHit(bread: BreadHuntBread): void {
-    const scoreText = new BreadHuntScoreText(
-      this,
-      bread.getPointsValue(),
-      bread.x,
-      bread.y,
-      150,
-      0.75
-    );
+    const scoreText = new BreadHuntScoreText(this, bread.getPointsValue(), bread.x, bread.y, 150, 0.75);
 
     // Create some particles
     this._breadEmitter.explode(40, bread.x, bread.y);
