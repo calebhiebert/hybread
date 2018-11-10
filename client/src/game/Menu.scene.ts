@@ -78,7 +78,7 @@ export class MenuScene extends Phaser.Scene {
     button.on('click', () => {
       const titleCardConfig: ITitleCardConfig = {
         image: 'tc-bread-hunt',
-        minDuration: 4.0,
+        minDuration: 1.0,
         scale: 1.35,
         sceneAfter: 'bread-hunt',
         title: 'Bread Hunt',
