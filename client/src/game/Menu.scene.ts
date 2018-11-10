@@ -35,22 +35,13 @@ export class MenuScene extends Phaser.Scene {
 
   create() {
     // Render the bread logo
-    this.breadLogo = this.add.image(
-      (this.game.config.width as number) / 2,
-      100,
-      'bread'
-    );
+    this.breadLogo = this.add.image((this.game.config.width as number) / 2, 100, 'bread');
 
     // Render the logo text
-    this.logoText = this.add.text(
-      (this.game.config.width as number) / 2,
-      250,
-      'Hybread',
-      {
-        fontFamily: 'Spicy Rice',
-        fontSize: '65px',
-      }
-    );
+    this.logoText = this.add.text((this.game.config.width as number) / 2, 250, 'Hybread', {
+      fontFamily: 'Spicy Rice',
+      fontSize: '65px',
+    });
 
     this.breadLogo.setOrigin(0.5, 0.5);
     this.logoText.setOrigin(0.5, 0.5);
@@ -60,7 +51,7 @@ export class MenuScene extends Phaser.Scene {
       this,
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2,
-      'Store'
+      'Store',
     );
 
     storeButton.on('click', () => {
@@ -72,7 +63,7 @@ export class MenuScene extends Phaser.Scene {
       this,
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 - 120,
-      'Bread Hunt'
+      'Bread Hunt',
     );
 
     button.on('click', () => {
@@ -91,9 +82,11 @@ export class MenuScene extends Phaser.Scene {
     // Create logout button
     const logout = new Button(
       this,
-      (this.game.config.width as number) / 2,
-      (this.game.config.height as number) / 2 - 50,
-      'Logout'
+      // (this.game.config.width as number) / 2 + 690,
+      // (this.game.config.height as number) / 2 - 400,
+      1480,
+      50,
+      'Logout',
     );
 
     //Logs the user out of the game
