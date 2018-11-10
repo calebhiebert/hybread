@@ -5,7 +5,6 @@ import { BreadHuntScene } from 'src/game/BreadHunt.scene';
 import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
 import { MessageService, IMessage } from 'src/app/message.service';
-import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { Router } from '@angular/router';
 import { HybreadAPI } from 'src/api';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
