@@ -9,6 +9,7 @@ import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { Router } from '@angular/router';
 import { HybreadAPI } from 'src/api';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
+import { BadBreadScene } from 'src/game/BadBread.scene';
 
 @Component({
   selector: 'app-game',
@@ -20,9 +21,6 @@ export class GameComponent implements AfterViewInit {
   private WIDTH = 1600;
 
   public showStore = false;
-
-  @ViewChild('gamecontainer')
-  private gameContainer: HTMLElement;
 
   @ViewChild('gamecanvas')
   private gameCanvas: ElementRef<HTMLCanvasElement>;
@@ -61,6 +59,7 @@ export class GameComponent implements AfterViewInit {
         MinigameTitleCard,
         GoodBreadScene,
         BreadHuntScene,
+        BadBreadScene,
       ],
     };
 

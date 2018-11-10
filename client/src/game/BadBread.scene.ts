@@ -2,12 +2,12 @@ import * as Phaser from 'phaser';
 import { Rays } from './rays';
 import { Button } from './ui/button';
 
-export class GoodBreadScene extends Phaser.Scene {
-  private rays: Rays;
+export class BadBreadScene extends Phaser.Scene {
+  private bread: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({
-      key: 'good-bread',
+      key: 'bad-bread',
     });
   }
 
@@ -16,12 +16,9 @@ export class GoodBreadScene extends Phaser.Scene {
     const midY = (this.game.config.height as number) / 2;
 
     // Place the background image
-    const sunrise = this.add.image(midX, midY, 'sunrise');
+    const sunrise = this.add.image(midX, midY, 'swamp');
     sunrise.setScaleMode(Phaser.ScaleModes.NEAREST);
     sunrise.setScale(10);
-
-    // Create the rays behind the bread
-    this.createRays();
 
     // Add the game baked text
     const bakedText = this.add.text(midX, midY + 125, 'You Baked:', {
@@ -34,7 +31,7 @@ export class GoodBreadScene extends Phaser.Scene {
     bakedText.alpha = 0;
 
     // Add the bread name text
-    const text = this.add.text(midX, midY + 200, 'Holy Garlic Bread', {
+    const text = this.add.text(midX, midY + 200, 'Smelly Mud Loaf', {
       fontFamily: 'Spicy Rice',
       fontSize: '86px',
       stroke: '#000',
@@ -44,9 +41,9 @@ export class GoodBreadScene extends Phaser.Scene {
     text.alpha = 0;
 
     // Add the bread image, animate it flying in
-    const bread = this.add.image(midX, 0 - 250, 'bread');
+    this.bread = this.add.sprite(midX, 0 - 250, 'bread');
     const breadTween = this.add.tween({
-      targets: bread,
+      targets: this.bread,
       duration: 700,
       y: midY - 50,
       ease: 'Back',
@@ -62,38 +59,10 @@ export class GoodBreadScene extends Phaser.Scene {
     });
 
     this.createButton();
+    this.createFlyParticles();
   }
 
-  update(time, delta) {
-    this.rays.angle += (10 * delta) / 1000;
-  }
-
-  private createRays() {
-    const midX = (this.game.config.width as number) / 2;
-    const midY = (this.game.config.height as number) / 2;
-
-    this.rays = new Rays(this, 1000, 10, 15);
-    this.rays.draw(0xfff2aa);
-    this.rays.setPosition(midX, midY);
-    this.rays.setAlpha(0);
-    this.rays.setBlendMode(Phaser.BlendModes.HARD_LIGHT);
-    this.rays.setScale(0);
-
-    const raysTween = this.add.tween({
-      targets: this.rays,
-      duration: 350,
-      alpha: 0.8,
-      ease: 'Linear',
-    });
-
-    const rayScaleTween = this.add.tween({
-      targets: this.rays,
-      duration: 1000,
-      delay: 275,
-      scaleX: 1,
-      scaleY: 1,
-    });
-  }
+  update(time, delta) {}
 
   private createButton() {
     const button = new Button(
@@ -105,6 +74,30 @@ export class GoodBreadScene extends Phaser.Scene {
 
     button.on('click', () => {
       this.scene.start('menu');
+    });
+  }
+
+  private createFlyParticles() {
+    const breadSource = {
+      getRandomPoint: (vec: Phaser.Math.Vector2) => {
+        vec.setTo(Math.random() * 240 - 120, Math.random() * 64);
+      },
+    };
+
+    const particles = this.add.particles('fly');
+    particles.setPosition(
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2
+    );
+
+    const emitter = particles.createEmitter({
+      // speed: 75,
+      speedY: { max: -45, min: -25 },
+      angle: { min: 0, max: 360 },
+      frequency: 750,
+      lifespan: { min: 6000, max: 18000 },
+      scale: { start: 0, end: 1, ease: 'Quad.easeOut' },
+      emitZone: { type: 'random', source: breadSource },
     });
   }
 }
