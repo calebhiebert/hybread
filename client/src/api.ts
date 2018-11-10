@@ -200,7 +200,7 @@ export interface IITem {
   cost: number;
 }
 
-interface IInventoryItem {
+export interface IInventoryItem {
   id: number;
   name: string;
   category: ItemCategory;
