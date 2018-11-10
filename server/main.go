@@ -89,12 +89,13 @@ func main() {
 	v1.GET("/check-authentication", CheckAuthentication)
 
 	// Authenticated routes
-	v1Auth.GET("/users", GetUsers)
 	v1Auth.GET("/items", GetItems)
 	v1Auth.GET("/inventory", GetInventory)
 	v1Auth.POST("/purchase", PurchaseItem)
 	v1Auth.POST("/bake", BakeBread)
 	v1Auth.POST("/bpurchase", PurchaseBulkItems)
+	v1Auth.GET("/leaderboards/richest", RichestPlayer)
+	v1Auth.GET("/leaderboards/best-bread", BestBread)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "The requested route was not found on this server"})

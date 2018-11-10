@@ -111,10 +111,6 @@ func CreateUser(c *gin.Context) {
 	c.JSON(200, &user)
 }
 
-func GetUsers(c *gin.Context) {
-
-}
-
 // CheckAuthentication checks the validity of the caller's authentication
 func CheckAuthentication(c *gin.Context) {
 	user, exists := c.Get("user")
@@ -149,7 +145,7 @@ func Logout(c *gin.Context) {
 	rds.Del(fmt.Sprintf("id:%d", user.ID))
 
 	//Deletes the auth id from redis
-	rds.Del(fmt.Sprintf("auth:%d", token))
+	rds.Del(fmt.Sprintf("auth:%s", token))
 }
 
 // Login the handler for obtaining a Bearer token to access the rest of the API
