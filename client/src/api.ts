@@ -118,6 +118,16 @@ export class HybreadAPI {
   }
 
   /**
+   * Removes the users token from session
+   */
+  public logout() {
+    return this._http
+      .post('/logout', null)
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */
@@ -135,13 +145,6 @@ export class HybreadAPI {
     }
 
     return Promise.reject(err);
-  }
-
-  /**
-   * Removes the users token from session
-   */
-  public logout() {
-    localStorage.clear();
   }
 }
 

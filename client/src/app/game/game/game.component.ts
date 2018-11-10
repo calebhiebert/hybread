@@ -6,6 +6,7 @@ import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
 import { MessageService, IMessage } from 'src/app/message.service';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -27,7 +28,7 @@ export class GameComponent implements AfterViewInit {
   private game: Phaser.Game;
   private resizeTimer: any;
 
-  constructor(private msgSrv: MessageService) {}
+  constructor(private msgSrv: MessageService, private router: Router) {}
 
   ngAfterViewInit() {
     (window as any).messageBus = this.msgSrv;
@@ -40,6 +41,10 @@ export class GameComponent implements AfterViewInit {
           break;
         case 'store-close':
           this.showStore = false;
+          break;
+        case 'logout':
+          localStorage.removeItem('auth-token');
+          this.router.navigate(['login']);
           break;
       }
     });

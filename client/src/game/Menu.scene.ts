@@ -92,13 +92,15 @@ export class MenuScene extends Phaser.Scene {
       this,
       (this.game.config.width as number) / 2,
       (this.game.config.height as number) / 2 - 50,
-      'Logout',
+      'Logout'
     );
 
     //Logs the user out of the game
     logout.on('click', async () => {
-      await this.api.logout();
-      window.location.reload();
+      // Send a message through the message service so logout can be handled by angular
+      this.messageService.sendMessage({
+        type: 'logout',
+      });
     });
   }
 }

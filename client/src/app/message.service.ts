@@ -18,6 +18,6 @@ export class MessageService {
 }
 
 export interface IMessage {
-  type: 'store-open' | 'store-close';
+  type: 'store-open' | 'store-close' | 'logout';
   data?: any;
 }
