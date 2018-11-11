@@ -34,7 +34,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.on('complete', () => {
       // Destroy the loading text as we do not need it anymore
       this.loadingText.destroy();
-      this.scene.start('bad-bread');
+      this.scene.start('good-bread');
     });
 
     /**
