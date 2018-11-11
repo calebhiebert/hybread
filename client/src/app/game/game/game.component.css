@@ -8,18 +8,38 @@
 }
 
 .store-overlay {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
   height: 0;
   width: 0;
   overflow: hidden;
   z-index: 10;
-  transition: height 0.5s, width 0.5s;
+}
+
+.loadout-overlay {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .store-overlay.active {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.loadout-overlay.active {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);

@@ -66,6 +66,17 @@ export class MenuScene extends Phaser.Scene {
       this.messageService.sendMessage({ type: 'store-open' });
     });
 
+    const loadoutButton = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 + 55,
+      'Bake Bread'
+    );
+
+    loadoutButton.on('click', () => {
+      this.messageService.sendMessage({ type: 'loadout-open' });
+    });
+
     // Create bread hunt button
     const button = new Button(
       this,
@@ -94,7 +105,7 @@ export class MenuScene extends Phaser.Scene {
       // (this.game.config.height as number) / 2 - 400,
       1480,
       50,
-      'Logout',
+      'Logout'
     );
 
     //Logs the user out of the game

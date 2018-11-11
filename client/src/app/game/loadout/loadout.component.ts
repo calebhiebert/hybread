@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'src/app/message.service';
 
 @Component({
   selector: 'app-loadout',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loadout.component.scss'],
 })
 export class LoadoutComponent implements OnInit {
-  constructor() {}
+  constructor(public msgService: MessageService) {}
 
   ngOnInit() {}
+
+  public close() {
+    this.msgService.sendMessage({ type: 'loadout-close' });
+  }
 }

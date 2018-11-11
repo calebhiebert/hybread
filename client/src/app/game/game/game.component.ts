@@ -19,7 +19,11 @@ export class GameComponent implements AfterViewInit {
   private ASPECT = 16.0 / 9.0;
   private WIDTH = 1600;
 
+  private _w: number;
+  private _h: number;
+
   public showStore = false;
+  public showLoadout = false;
 
   @ViewChild('gamecanvas')
   private gameCanvas: ElementRef<HTMLCanvasElement>;
@@ -40,6 +44,12 @@ export class GameComponent implements AfterViewInit {
           break;
         case 'store-close':
           this.showStore = false;
+          break;
+        case 'loadout-open':
+          this.showLoadout = true;
+          break;
+        case 'loadout-close':
+          this.showLoadout = false;
           break;
         case 'logout':
           this.logout();
@@ -110,9 +120,46 @@ export class GameComponent implements AfterViewInit {
       width = height * this.ASPECT;
     }
 
+    this._w = width;
+    this._h = height;
+
     if (this.game && this.game.renderer) {
       this.gameCanvas.nativeElement.style.width = `${width}px`;
       this.gameCanvas.nativeElement.style.height = `${height}px`;
     }
+  }
+
+  public get overlayVisible() {
+    return this.showStore === true || this.showLoadout === true;
+  }
+
+  public get containerTopMargin(): string {
+    return (window.innerHeight - this._h) / 2 + 'px';
+  }
+
+  public get containerLeftMargin(): string {
+    return (window.innerWidth - this._w) / 2 + 'px';
+  }
+
+  public get w(): number {
+    return this._w;
+  }
+
+  public get h(): number {
+    return this._h;
+  }
+
+  public get overlaySize(): { w: number; h: number } {
+    if (!this.overlayVisible) {
+      return {
+        w: 0,
+        h: 0,
+      };
+    }
+
+    return {
+      w: this.w,
+      h: this.h,
+    };
   }
 }

@@ -7,9 +7,15 @@
 
   padding: 0.25rem;
   cursor: pointer;
+
+  margin-bottom: 0.5rem;
+
+  color: white;
+  letter-spacing: 0.1rem;
 }
 
 .loadout-selector:hover {
   background-color: rgb(204, 144, 109);
   border: 2px solid white;
+  color: black;
 }

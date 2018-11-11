@@ -18,6 +18,8 @@ export class StoreComponent implements OnInit {
 
   public searchTerm = '';
 
+  private _loading = true;
+
   private api: HybreadAPI;
 
   constructor() {
@@ -35,7 +37,10 @@ export class StoreComponent implements OnInit {
 
       const inventory = await this.api.getInventory();
       this.inventory = inventory;
-    } catch (err) {}
+      this._loading = false;
+    } catch (err) {
+      this._loading = false;
+    }
   }
 
   /**
@@ -43,7 +48,7 @@ export class StoreComponent implements OnInit {
    * Filtering looks for the search term in either the item name or description
    */
   public get searchItems() {
-    if (!this.items) {
+    if (!this.items || this._loading) {
       return [];
     } else if (this.searchTerm === '') {
       return this.items;
