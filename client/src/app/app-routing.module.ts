@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { StoreComponent } from './game/store/store.component';
+import { LoadoutComponent } from './game/loadout/loadout.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'game',
     component: GameComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'loadout',
+    component: LoadoutComponent,
     canActivate: [AuthGuard],
   },
 ];
