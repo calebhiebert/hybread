@@ -96,6 +96,7 @@ func main() {
 	v1Auth.POST("/bpurchase", PurchaseBulkItems)
 	v1Auth.GET("/leaderboards/richest", RichestPlayer)
 	v1Auth.GET("/leaderboards/best-bread", BestBread)
+	// v1Auth.GET("/leaderboards/users-level", UsersLevel)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(404, gin.H{"error": "The requested route was not found on this server"})

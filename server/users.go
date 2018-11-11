@@ -13,7 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jkomyno/nanoid"
 	"golang.org/x/crypto/bcrypt"
-	db "upper.io/db.v3"
+	"upper.io/db.v3"
 )
 
 type CreateUserArgs struct {
