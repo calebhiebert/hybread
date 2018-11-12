@@ -4,6 +4,23 @@
     <app-item-selector title="Cooking Surface" [item]="cookingSurface"></app-item-selector>
     <app-item-selector title="Cooling Surface" [item]="coolingSurface"></app-item-selector>
   </div>
-  <button class="button self-end ml-auto mb-2 mr-2" (click)="close()">Cancel</button>
-  <button class="button self-end ml-2 mb-2 mr-2" (click)="bake()">Bake</button>
+  <app-item-list
+    class="w-1/2"
+    [inventory]="inventory"
+    mode="big"
+    *ngIf="inventory"
+    (select)="onItemSelected($event)"
+  ></app-item-list>
+  <div class="flex flex-col flex-wrap w-1/4">
+    <app-item-list
+      class="w-full h-64"
+      [inventory]="loadout"
+      *ngIf="inventory"
+      (remove)="onItemRemoved($event)"
+    ></app-item-list>
+    <div class="flex w-full">
+      <button class="button self-end ml-auto mb-2 mr-2" (click)="close()">Cancel</button>
+      <button class="button self-end ml-2 mb-2 mr-2" (click)="bake()">Bake</button>
+    </div>
+  </div>
 </div>

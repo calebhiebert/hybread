@@ -1,0 +1,12 @@
+<div class="flex w-full h-full item-container" *ngIf="mode === 'big'">
+  <div class="item w-1/4 bg-black rounded" *ngFor="let item of inventory" (click)="select.emit(item)">
+    <div class="text-center w-full">{{ item.name }} x{{ item.count }}</div>
+    <div class="image-container w-full" [style.background-image]="getImageCSS(item)"></div>
+  </div>
+</div>
+<div class="flex w-full h-full item-container" *ngIf="mode === 'small'">
+  <div class="small-item flex w-full bg-black mt-2 p-2" *ngFor="let item of inventory">
+    <div class="spicy w-1/2">{{ item.name }} x{{ item.count }}</div>
+    <div class="spicy w-1/2 text-red cursor-pointer text-right" (click)="remove.emit(item)">X</div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.item-container {
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.item {
+  padding: 0.5rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.589);
+  flex-grow: 1;
+  width: 15%;
+  height: 15%;
+  margin: 0.25rem;
+  cursor: pointer;
+
+  color: white;
+}
+
+.item:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.small-item {
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.image-container {
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  background-position: center;
+  width: 100%;
+  height: 80%;
+}
