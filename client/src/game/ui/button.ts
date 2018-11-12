@@ -20,7 +20,9 @@ export class Button extends Phaser.Events.EventEmitter {
     this.button.setOrigin(0.5, 0.5);
     this.text.setOrigin(0.5, 0.5);
 
-    this.button.setInteractive();
+    this.button.setInteractive({
+      cursor: 'pointer',
+    });
     this.button.on('pointerover', () => this.enterHover());
     this.button.on('pointerout', () => this.leaveHover());
     this.button.on('pointerdown', () => {

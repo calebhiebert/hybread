@@ -16,6 +16,10 @@ export class LoadoutComponent implements OnInit {
     this.msgService.sendMessage({ type: 'loadout-close' });
   }
 
+  public bake() {
+    this.msgService.sendMessage({ type: 'bake' });
+  }
+
   public get heatSource(): IITem {
     return {
       id: 1,

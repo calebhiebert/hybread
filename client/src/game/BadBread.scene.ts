@@ -1,5 +1,4 @@
 import * as Phaser from 'phaser';
-import { Rays } from './rays';
 import { Button } from './ui/button';
 
 export class BadBreadScene extends Phaser.Scene {
@@ -69,7 +68,7 @@ export class BadBreadScene extends Phaser.Scene {
       this,
       (this.game.config.width as number) - (190 / 2 + 10),
       (this.game.config.height as number) - (45 / 2 + 10),
-      'Yay ->'
+      'Yay ->',
     );
 
     button.on('click', () => {
@@ -85,13 +84,9 @@ export class BadBreadScene extends Phaser.Scene {
     };
 
     const particles = this.add.particles('fly');
-    particles.setPosition(
-      (this.game.config.width as number) / 2,
-      (this.game.config.height as number) / 2
-    );
+    particles.setPosition((this.game.config.width as number) / 2, (this.game.config.height as number) / 2);
 
     const emitter = particles.createEmitter({
-      // speed: 75,
       speedY: { max: -45, min: -25 },
       angle: { min: 0, max: 360 },
       frequency: 750,

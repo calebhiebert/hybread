@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { HybreadAPI } from 'src/api';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { BadBreadScene } from 'src/game/BadBread.scene';
+import { BakingBreadScene } from 'src/game/BakingBread.scene';
 
 @Component({
   selector: 'app-game',
@@ -36,25 +37,30 @@ export class GameComponent implements AfterViewInit {
   ngAfterViewInit() {
     (window as any).messageBus = this.msgSrv;
 
-    this.msgSrv.msgBus.subscribe((msg: IMessage) => {
-      console.log('MSG', msg);
-      switch (msg.type) {
-        case 'store-open':
-          this.showStore = true;
-          break;
-        case 'store-close':
-          this.showStore = false;
-          break;
-        case 'loadout-open':
-          this.showLoadout = true;
-          break;
-        case 'loadout-close':
-          this.showLoadout = false;
-          break;
-        case 'logout':
-          this.logout();
-          break;
-      }
+    const mbus = this.msgSrv.msgBus;
+
+    mbus.on('store-open', () => {
+      this.showStore = true;
+    });
+
+    mbus.on('store-close', () => {
+      this.showStore = false;
+    });
+
+    mbus.on('loadout-open', () => {
+      this.showLoadout = true;
+    });
+
+    mbus.on('loadout-close', () => {
+      this.showLoadout = false;
+    });
+
+    mbus.on('bake', () => {
+      this.showLoadout = false;
+    });
+
+    mbus.on('logout', () => {
+      this.logout();
     });
 
     const config: GameConfig = {
@@ -69,6 +75,7 @@ export class GameComponent implements AfterViewInit {
         GoodBreadScene,
         BreadHuntScene,
         BadBreadScene,
+        BakingBreadScene,
       ],
     };
 
