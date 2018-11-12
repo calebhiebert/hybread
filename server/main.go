@@ -87,6 +87,7 @@ func main() {
 	v1.POST("/logout", Logout)
 	v1.GET("/username-available", UsernameAvailable)
 	v1.GET("/check-authentication", CheckAuthentication)
+	v1.GET("/test", RichestPlayer)
 
 	// Authenticated routes
 	v1Auth.GET("/items", GetItems)

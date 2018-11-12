@@ -7,30 +7,35 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 	"upper.io/db.v3"
 )
 
 //Display the riches players on the leaderboard
 func RichestPlayer(c *gin.Context) {
-
 	var users []User
+	var currency []int
 
 	//query the db for the list of
 	err = sess.Collection("users").Find().All(&users)
 	if err != nil {
 		// This error means that no rows were found, ie. the user does not exist
 		if err == db.ErrNoMoreRows {
-			c.JSON(401, gin.H{"error": "No Users found"})
+			c.JSON(401, gin.H{"error": "No Users found in database"})
 			return
 		} else {
 			panic(err)
 		}
 	}
 
-	fmt.Print(users)
+	for index := 0; index < len(users); index++ {
+		currency = append(currency, users[index].Currency)
+	}
+
+	//Returns all users in json object
+	c.JSON(200, gin.H{
+		"currency": currency,
+	})
 }
 
 //List of all the best breads that have been made
