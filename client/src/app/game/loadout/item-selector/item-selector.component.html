@@ -1,0 +1,7 @@
+<div class="item-selector">
+  <h2 class="spicy text-center">{{ title }}</h2>
+  <div class="h-full" *ngIf="item !== undefined">
+    <div class="image-container" [style.background-image]="backgroundImageCSS"></div>
+    <h4 class="text-center">{{ item.name }}</h4>
+  </div>
+</div>

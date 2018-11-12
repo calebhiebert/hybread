@@ -8,9 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './store/cart/cart.component';
 import { CartListComponent } from './store/cart-list/cart-list.component';
 import { LoadoutComponent } from './loadout/loadout.component';
+import { ItemSelectorComponent } from './loadout/item-selector/item-selector.component';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
-  declarations: [GameComponent, StoreComponent, StoreItemComponent, StoreSidebarComponent, CartComponent, CartListComponent, LoadoutComponent],
+  declarations: [GameComponent, StoreComponent, StoreItemComponent, StoreSidebarComponent, CartComponent, CartListComponent, LoadoutComponent, ItemSelectorComponent],
 })
 export class GameModule {}
