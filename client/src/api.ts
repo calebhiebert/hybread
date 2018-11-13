@@ -137,6 +137,16 @@ export class HybreadAPI {
   }
 
   /**
+   * Returns an array of the 10 players with the most currency
+   */
+  public leaderboardRichest(): Promise<IRichestLeaderboardPlayer[]> {
+    return this._http
+      .get('/leaderboards/richest')
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */
@@ -220,4 +230,10 @@ export interface IBakeInput {
   kneadSeconds: number;
   bakeMinutes: number;
   toolIds: number[];
+}
+
+export interface IRichestLeaderboardPlayer {
+  username: string;
+  currency: number;
+  rank: number;
 }

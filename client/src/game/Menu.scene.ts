@@ -61,6 +61,16 @@ export class MenuScene extends Phaser.Scene {
       this.messageService.sendMessage({ type: 'store-open' });
     });
 
+    const leaderboard = new Button(
+      this,
+      (this.game.config.width as number) / 2,
+      (this.game.config.height as number) / 2 + 110,
+      'Leaderboards',
+    );
+    leaderboard.on('click', () => {
+      this.messageService.sendMessage({ type: 'leaderboard-open' });
+    });
+
     const loadoutButton = new Button(
       this,
       (this.game.config.width as number) / 2,

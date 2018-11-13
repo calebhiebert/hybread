@@ -21,3 +21,29 @@ app-store {
   height: 100%;
   display: block;
 }
+
+.button {
+  background: url('/assets/ui/buttonLong_brown.png') no-repeat center;
+  cursor: pointer;
+  border: none;
+  width: 190px;
+  height: 49px;
+
+  color: white;
+  font-family: 'Spicy Rice';
+  font-size: 26px;
+  outline: none;
+}
+
+.button:hover {
+  background: url('/assets/ui/buttonLong_brown_pressed.png') no-repeat center;
+}
+
+.button:disabled {
+  filter: grayscale(100%);
+}
+
+.button:disabled:hover {
+  background: url('/assets/ui/buttonLong_brown.png') no-repeat center;
+  cursor: not-allowed;
+}

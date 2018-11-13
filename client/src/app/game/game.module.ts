@@ -10,6 +10,7 @@ import { CartListComponent } from './store/cart-list/cart-list.component';
 import { LoadoutComponent } from './loadout/loadout.component';
 import { ItemSelectorComponent } from './loadout/item-selector/item-selector.component';
 import { ItemListComponent } from './loadout/item-list/item-list.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
@@ -23,6 +24,7 @@ import { ItemListComponent } from './loadout/item-list/item-list.component';
     LoadoutComponent,
     ItemSelectorComponent,
     ItemListComponent,
+    LeaderboardComponent,
   ],
 })
 export class GameModule {}

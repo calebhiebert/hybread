@@ -25,6 +25,7 @@ export class GameComponent implements AfterViewInit {
 
   public showStore = false;
   public showLoadout = false;
+  public showLeaderboard = false;
 
   @ViewChild('gamecanvas')
   private gameCanvas: ElementRef<HTMLCanvasElement>;
@@ -56,6 +57,14 @@ export class GameComponent implements AfterViewInit {
 
     mbus.on('loadout-close', () => {
       this.showLoadout = false;
+    });
+
+    mbus.on('leaderboard-open', () => {
+      this.showLeaderboard = true;
+    });
+
+    mbus.on('leaderboard-close', () => {
+      this.showLeaderboard = false;
     });
 
     mbus.on('bake', () => {
@@ -150,7 +159,7 @@ export class GameComponent implements AfterViewInit {
   }
 
   public get overlayVisible() {
-    return this.showStore === true || this.showLoadout === true;
+    return this.showStore === true || this.showLoadout === true || this.showLeaderboard === true;
   }
 
   public get containerTopMargin(): string {

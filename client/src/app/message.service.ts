@@ -19,6 +19,14 @@ export class MessageService {
 }
 
 export interface IMessage {
-  type: 'store-open' | 'store-close' | 'logout' | 'loadout-open' | 'loadout-close' | 'bake';
+  type:
+    | 'store-open'
+    | 'store-close'
+    | 'logout'
+    | 'loadout-open'
+    | 'loadout-close'
+    | 'bake'
+    | 'leaderboard-open'
+    | 'leaderboard-close';
   data?: any;
 }

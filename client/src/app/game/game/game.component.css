@@ -7,18 +7,17 @@
   background-blend-mode: color-burn;
 }
 
-.store-overlay {
+.overlay {
   height: 0;
   width: 0;
   overflow: hidden;
   z-index: 10;
 }
 
-.loadout-overlay {
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  z-index: 10;
+.overlay.active {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
 }
 
 .overlay-container {
@@ -31,18 +30,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.store-overlay.active {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.loadout-overlay.active {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
 }
 
 canvas {
