@@ -12,6 +12,8 @@
 
   color: white;
   letter-spacing: 0.1rem;
+
+  outline: none;
 }
 
 :host:hover {
@@ -27,14 +29,7 @@
   color: black;
   border: 1px solid transparent;
   background: linear-gradient(white, white) padding-box,
-    repeating-linear-gradient(
-        -45deg,
-        black 0,
-        black 25%,
-        transparent 0,
-        transparent 50%
-      )
-      0 / 1em 1em;
+    repeating-linear-gradient(-45deg, black 0, black 25%, transparent 0, transparent 50%) 0 / 1em 1em;
   animation: ants 12s linear infinite;
 }
 @keyframes ants {
