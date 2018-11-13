@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/message.service';
-import { IITem, IInventoryItem, HybreadAPI } from 'src/api';
+import { IITem, IInventoryItem, HybreadAPI, IBakeInput } from 'src/api';
 
 @Component({
   selector: 'app-loadout',
@@ -36,7 +36,27 @@ export class LoadoutComponent implements OnInit {
   }
 
   public bake() {
-    this.msgService.sendMessage({ type: 'bake' });
+    if (!this.canBake) {
+      console.warn('Cannot bake');
+      return;
+    }
+
+    const ingredients: { [key: number]: number } = {};
+
+    for (const ingredient of this.loadout) {
+      ingredients[ingredient.id] = ingredient.count;
+    }
+
+    const input: IBakeInput = {
+      ingredients,
+      mixSeconds: 1,
+      riseMinutes: 1,
+      kneadSeconds: 1,
+      bakeMinutes: 1,
+      toolIds: [this._heat.id, this._cook.id, this._cool.id],
+    };
+
+    this.msgService.sendMessage({ type: 'bake', data: input });
   }
 
   public onSelectorFocusOut() {
@@ -90,6 +110,15 @@ export class LoadoutComponent implements OnInit {
     if (item.count === 0) {
       this.inventory = this.inventory.filter((ii) => ii.id !== item.id);
     }
+  }
+
+  public get canBake(): boolean {
+    return (
+      this._heat !== undefined &&
+      this._cook !== undefined &&
+      this.coolingSurface !== undefined &&
+      this.loadout.length > 0
+    );
   }
 
   public get heatSource(): IITem {

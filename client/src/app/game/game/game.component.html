@@ -5,12 +5,8 @@
   [style.margin-top]="containerTopMargin"
   [style.margin-left]="containerLeftMargin"
 >
-  <div class="store-overlay" [ngClass]="{ active: showStore }">
-    <app-store *ngIf="showStore"></app-store>
-  </div>
-  <div class="loadout-overlay" [ngClass]="{ active: showLoadout }">
-    <app-loadout *ngIf="showLoadout"></app-loadout>
-  </div>
+  <div class="store-overlay" [ngClass]="{ active: showStore }"><app-store *ngIf="showStore"></app-store></div>
+  <div class="loadout-overlay" [ngClass]="{ active: showLoadout }"><app-loadout *ngIf="showLoadout"></app-loadout></div>
 </div>
 
 <div class="gamecontainer" #gamecontainer><canvas #gamecanvas></canvas></div>

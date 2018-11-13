@@ -49,9 +49,7 @@ export class HybreadAPI {
    * Checks if a given username is in use or not already
    * @param username string
    */
-  public checkUsernameAvailability(
-    username: string
-  ): Promise<IUsernameAvailability> {
+  public checkUsernameAvailability(username: string): Promise<IUsernameAvailability> {
     return this._http
       .get('/username-available', {
         params: {
@@ -128,6 +126,17 @@ export class HybreadAPI {
   }
 
   /**
+   * Bakes the bread, removes all items from inventory
+   * @param input bread baking config
+   */
+  public bake(input: IBakeInput): Promise<any> {
+    return this._http
+      .post('/bake', input)
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  /**
    * Extracts the response data from an axios response
    * @param response axios api response
    */
@@ -185,12 +194,7 @@ interface IItemsResponse {
   items: IITem[];
 }
 
-type ItemCategory =
-  | 'tool'
-  | 'heat-source'
-  | 'cooking-surface'
-  | 'base-ingredient'
-  | 'extra-ingredient';
+type ItemCategory = 'tool' | 'heat-source' | 'cooking-surface' | 'base-ingredient' | 'extra-ingredient';
 
 export interface IITem {
   id: number;
@@ -207,4 +211,13 @@ export interface IInventoryItem {
   description: string;
   cost: number;
   count: number;
+}
+
+export interface IBakeInput {
+  ingredients: { [key: number]: number };
+  mixSeconds: number;
+  riseMinutes: number;
+  kneadSeconds: number;
+  bakeMinutes: number;
+  toolIds: number[];
 }

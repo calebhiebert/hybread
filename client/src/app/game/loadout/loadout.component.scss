@@ -13,3 +13,12 @@
 .button:hover {
   background: url('/assets/ui/buttonLong_brown_pressed.png') no-repeat center;
 }
+
+.button:disabled {
+  filter: grayscale(100%);
+}
+
+.button:disabled:hover {
+  background: url('/assets/ui/buttonLong_brown.png') no-repeat center;
+  cursor: not-allowed;
+}

@@ -6,7 +6,7 @@ import { MinigameTitleCard } from 'src/game/MinigameTitleCard.scene';
 import { MenuScene } from 'src/game/Menu.scene';
 import { MessageService, IMessage } from 'src/app/message.service';
 import { Router } from '@angular/router';
-import { HybreadAPI } from 'src/api';
+import { HybreadAPI, IBakeInput } from 'src/api';
 import { GoodBreadScene } from 'src/game/GoodBread.scene';
 import { BadBreadScene } from 'src/game/BadBread.scene';
 import { BakingBreadScene } from 'src/game/BakingBread.scene';
@@ -32,10 +32,13 @@ export class GameComponent implements AfterViewInit {
   private game: Phaser.Game;
   private resizeTimer: any;
 
+  private api: HybreadAPI;
+
   constructor(private msgSrv: MessageService, private router: Router) {}
 
   ngAfterViewInit() {
     (window as any).messageBus = this.msgSrv;
+    this.api = new HybreadAPI(localStorage.getItem('auth-token'));
 
     const mbus = this.msgSrv.msgBus;
 
@@ -61,6 +64,17 @@ export class GameComponent implements AfterViewInit {
 
     mbus.on('logout', () => {
       this.logout();
+    });
+
+    mbus.on('bake', async (input: IBakeInput) => {
+      console.log('Want to bake', input);
+
+      try {
+        const bakeResult = await this.api.bake(input);
+        console.log('Bake result', bakeResult);
+      } catch (err) {
+        console.warn('bread bake err', err);
+      }
     });
 
     const config: GameConfig = {
@@ -93,8 +107,7 @@ export class GameComponent implements AfterViewInit {
 
   private async logout() {
     try {
-      const api = new HybreadAPI(localStorage.getItem('auth-token'));
-      await api.logout();
+      await this.api.logout();
       localStorage.removeItem('auth-token');
       this.router.navigate(['login']);
     } catch (err) {
