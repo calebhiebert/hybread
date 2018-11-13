@@ -12,6 +12,12 @@ export class LoadoutComponent implements OnInit {
 
   public loadout: IInventoryItem[] = [];
 
+  public activeSelector: 'heat' | 'cook' | 'cool' | null = null;
+
+  private _heat?: IInventoryItem;
+  private _cook?: IInventoryItem;
+  private _cool?: IInventoryItem;
+
   constructor(public msgService: MessageService) {}
 
   async ngOnInit() {
@@ -33,6 +39,13 @@ export class LoadoutComponent implements OnInit {
     this.msgService.sendMessage({ type: 'bake' });
   }
 
+  public onSelectorFocusOut() {
+    // This is a hack but I'm not sure how to do this without it
+    setTimeout(() => {
+      this.activeSelector = null;
+    }, 200);
+  }
+
   public onItemRemoved(item: IInventoryItem) {
     const inventoryItem = this.inventory.find((ii) => ii.id === item.id);
 
@@ -46,6 +59,21 @@ export class LoadoutComponent implements OnInit {
   }
 
   public onItemSelected(item: IInventoryItem) {
+    if (this.activeSelector !== null) {
+      switch (this.activeSelector) {
+        case 'cook':
+          this._cook = { ...item, count: 1 };
+          break;
+        case 'cool':
+          this._cool = { ...item, count: 1 };
+          break;
+        case 'heat':
+          this._heat = { ...item, count: 1 };
+          break;
+      }
+      return;
+    }
+
     if (item.count === 0) {
       return;
     }
@@ -65,32 +93,14 @@ export class LoadoutComponent implements OnInit {
   }
 
   public get heatSource(): IITem {
-    return {
-      id: 1,
-      name: 'Dark Magic',
-      category: 'base-ingredient',
-      description: 'It is waqter',
-      cost: 1,
-    };
+    return this._heat;
   }
 
   public get cookingSurface(): IITem {
-    return {
-      id: 1,
-      name: 'Dark Magic',
-      category: 'base-ingredient',
-      description: 'It is waqter',
-      cost: 1,
-    };
+    return this._cook;
   }
 
   public get coolingSurface(): IITem {
-    return {
-      id: 1,
-      name: 'Dark Magic',
-      category: 'base-ingredient',
-      description: 'It is waqter',
-      cost: 1,
-    };
+    return this._cool;
   }
 }

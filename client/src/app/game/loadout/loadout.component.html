@@ -1,8 +1,29 @@
 <div class="flex h-full w-full bg-orange-darker">
   <div class="flex bg-grey w-1/4 min-w px-2 pt-2 flex-col">
-    <app-item-selector title="Heat Source" [item]="heatSource"></app-item-selector>
-    <app-item-selector title="Cooking Surface" [item]="cookingSurface"></app-item-selector>
-    <app-item-selector title="Cooling Surface" [item]="coolingSurface"></app-item-selector>
+    <app-item-selector
+      title="Heat Source"
+      [item]="heatSource"
+      [ngClass]="{ active: activeSelector === 'heat' }"
+      (click)="activeSelector = 'heat'"
+      tabindex="-1"
+      (focusout)="onSelectorFocusOut()"
+    ></app-item-selector>
+    <app-item-selector
+      title="Cooking Surface"
+      [item]="cookingSurface"
+      [ngClass]="{ active: activeSelector === 'cook' }"
+      (click)="activeSelector = 'cook'"
+      tabindex="-1"
+      (focusout)="onSelectorFocusOut()"
+    ></app-item-selector>
+    <app-item-selector
+      title="Cooling Surface"
+      [item]="coolingSurface"
+      [ngClass]="{ active: activeSelector === 'cool' }"
+      (click)="activeSelector = 'cool'"
+      tabindex="-1"
+      (focusout)="onSelectorFocusOut()"
+    ></app-item-selector>
   </div>
   <app-item-list
     class="w-1/2"
@@ -19,8 +40,12 @@
       (remove)="onItemRemoved($event)"
     ></app-item-list>
     <div class="flex w-full">
-      <button class="button self-end ml-auto mb-2 mr-2" (click)="close()">Cancel</button>
-      <button class="button self-end ml-2 mb-2 mr-2" (click)="bake()">Bake</button>
+      <button class="button self-end ml-auto mb-2 mr-2" (click)="close()">
+        Cancel
+      </button>
+      <button class="button self-end ml-2 mb-2 mr-2" (click)="bake()">
+        Bake
+      </button>
     </div>
   </div>
 </div>
